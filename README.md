@@ -1,4 +1,4 @@
-nenuzhninux
+nenuzhnix
 ===========
 
 the most useless linux distro
