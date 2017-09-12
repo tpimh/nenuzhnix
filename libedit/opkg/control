@@ -1,0 +1,5 @@
+Package: libedit
+Version: 3.1-20170329
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: readline replacement

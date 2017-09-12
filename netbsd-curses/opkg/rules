@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=curses
+
+case "$1" in
+  build)
+    cat << EOF > config.mak
+CC=clang
+CFLAGS=-fPIC
+PREFIX=/
+DESTDIR=/tmp/$PACKAGE
+EOF
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    make install
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

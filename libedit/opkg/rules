@@ -1,0 +1,32 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=libedit
+
+case "$1" in
+  build)
+    ./configure CC='clang' CFLAGS='-D__STDC_ISO_10646__=201103L' --prefix=/
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ln -sf libedit.a "$DESTDIR"/lib/libreadline.a
+    ln -sf libedit.so "$DESTDIR"/lib/libreadline.so
+    mkdir -p "$DESTDIR"/include/readline
+    touch "$DESTDIR"/include/readline/history.h
+    touch "$DESTDIR"/include/readline/tilde.h
+    ln -sf ../editline/readline.h "$DESTDIR"/include/readline/readline.h
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

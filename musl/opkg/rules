@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=musl
+
+case "$1" in
+  build)
+    ./configure LIBCC="$(clang -print-libgcc-file-name)" CC='clang' --prefix=/
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    mkdir "$DESTDIR"/bin
+    ln -sf /lib/libc.so "$DESTDIR"/bin/ldd
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

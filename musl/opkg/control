@@ -1,0 +1,5 @@
+Package: musl
+Version: 20170912
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: musl libc
