@@ -1,0 +1,5 @@
+Package: toybox
+Version: 0.7.4
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: multi-call swiss army knife

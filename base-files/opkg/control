@@ -1,0 +1,5 @@
+Package: base-files
+Version: 0.1
+Architecture: all
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: base files of nenuzhnix

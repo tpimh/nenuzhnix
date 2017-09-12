@@ -1,0 +1,103 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=base-files
+
+case "$1" in
+  build)
+    echo "root:x:0:" > group
+    echo "root:*::" > gshadow
+    echo "root:x:0:0:root:/root:/bin/sh" > passwd
+    echo "root::0:0:99999:7:::" > shadow
+    echo "nenuzhnix" > hostname
+    echo "kernel.printk = 4 4 1 7" > sysctl.conf
+
+    cat << EOF > hosts
+127.0.0.1 localhost nenuzhnix
+::1       localhost nenuzhnix
+EOF
+
+    cat << EOF > inittab
+::sysinit:mount proc /proc -t proc
+::sysinit:sysctl -p
+::respawn:/sbin/getty -l /bin/autologin -n -L ttyS0 115200 vt100
+EOF
+
+    cat << EOF > profile
+#!/bin/sh
+export PATH=/bin
+export PS1='nenuzhnix> '
+cat /etc/issue
+EOF
+
+    cat << EOF > os-release
+NAME="Nenuzhnix"
+ID=nenuzhnix
+VERSION_ID=0.1
+EOF
+
+    cat << EOF > issue
+                                                               
+                                    #               "          
+ m mm    mmm   m mm   m   m  mmmmm  # mm   m mm   mmm    m   m 
+ #"  #  #"  #  #"  #  #   #     m"  #"  #  #"  #    #     #m#  
+ #   #  #""""  #   #  #   #   m"    #   #  #   #    #     m#m  
+ #   #  "#mm"  #   #  "mm"#  #mmmm  #   #  #   #  mm#mm  m" "m 
+                                                               
+ the most useless linux distro                                 
+ -----------------------------                                 
+EOF
+
+  cat << EOF > autologin
+#!/bin/sh
+/bin/login -f root
+EOF
+
+  cat << EOF > esh
+#!/bin/sh
+/bin/dash -E \$*
+EOF
+
+  cat << EOF > vsh
+#!/bin/sh
+/bin/dash -V \$*
+EOF
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE/bin
+    mkdir -p /tmp/$PACKAGE/dev
+    mkdir -p /tmp/$PACKAGE/etc
+    mkdir -p /tmp/$PACKAGE/include
+    mkdir -p /tmp/$PACKAGE/lib
+    mkdir -p /tmp/$PACKAGE/proc
+    mkdir -p /tmp/$PACKAGE/root
+    mkdir -p /tmp/$PACKAGE/share
+    mkdir -p /tmp/$PACKAGE/sys
+    install -D -m 644 group /tmp/$PACKAGE/etc/group
+    install -D -m 640 gshadow /tmp/$PACKAGE/etc/gshadow
+    install -D -m 644 passwd /tmp/$PACKAGE/etc/passwd
+    install -D -m 640 shadow /tmp/$PACKAGE/etc/shadow
+    install -D -m 644 hostname /tmp/$PACKAGE/etc/hostname
+    install -D -m 644 sysctl.conf /tmp/$PACKAGE/etc/sysctl.conf
+    install -D -m 644 hosts /tmp/$PACKAGE/etc/hosts
+    install -D -m 644 inittab /tmp/$PACKAGE/etc/inittab
+    install -D -m 644 profile /tmp/$PACKAGE/etc/profile
+    install -D -m 644 os-release /tmp/$PACKAGE/etc/os-release
+    install -D -m 644 issue /tmp/$PACKAGE/etc/issue
+    install -D -m 755 autologin /tmp/$PACKAGE/bin/autologin
+    install -D -m 755 esh /tmp/$PACKAGE/bin/esh
+    install -D -m 755 vsh /tmp/$PACKAGE/bin/vsh
+    ln -sf dash /tmp/$PACKAGE/bin/sh
+    ;;
+
+  clean)
+    rm -f group gshadow passwd shadow hostname sysctl.conf hosts inittab profile os-release issue autologin esh vsh 
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

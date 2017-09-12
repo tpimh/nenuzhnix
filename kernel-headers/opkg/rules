@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=kernel-headers
+
+case "$1" in
+  build)
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    make ARCH=x86_64 prefix=/ DESTDIR=/tmp/$PACKAGE install
+    ;;
+
+  clean)
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
