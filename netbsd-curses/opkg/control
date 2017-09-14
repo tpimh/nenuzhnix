@@ -2,4 +2,4 @@ Package: curses
 Version: 0.2.1
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
-Description: lightweight curses library
+Description: lightweight curses library from netbsd
