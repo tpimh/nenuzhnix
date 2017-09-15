@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=libressl
+
+case "$1" in
+  build)
+    rm -rf build
+    mkdir build
+    cd build
+    cmake -DCMAKE_C_COMPILER=clang -DCMAKE_INSTALL_PREFIX="" -DCMAKE_C_FLAGS="-DGRND_NONBLOCK=0x0001" -G Ninja ..
+    ninja -j1
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    cd build
+    DESTDIR=$DESTDIR ninja install
+    ;;
+
+  clean)
+    rm -rf build
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
