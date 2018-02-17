@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=lynx
+
+case "$1" in
+  build)
+    ./configure CC='clang' --prefix=/ --with-ssl --enable-ipv6 --disable-nls
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
+
