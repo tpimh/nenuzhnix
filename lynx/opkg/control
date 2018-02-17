@@ -1,0 +1,5 @@
+Package: lynx
+Version: 2.8.8
+Architecture: x86_64
+Maintainer: Proton <nagakamira@gmail.com>
+Description: CLI Web Browser
