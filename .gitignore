@@ -1,2 +1,14 @@
 *~
 *.swp
+
+# ignore source tarballs
+*.tar.gz
+
+# ignore built packages
+*.opk
+
+# ignore unpacked source
+*/*
+
+# but not the control directories
+!*/opkg
