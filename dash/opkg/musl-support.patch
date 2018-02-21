@@ -1,0 +1,31 @@
+From: Jilles Tjoelker <jilles@xxxxxxxx>
+Date: Thu, 4 Aug 2016 17:51:12 +0200
+Subject: [PATCH 1/2] [HISTEDIT] Stop depending on getopt reset feature.
+
+Instead, use our own nextopt() function.
+---
+ src/histedit.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/src/histedit.c b/src/histedit.c
+index 94465d7..ec45065 100644
+--- a/src/histedit.c
++++ b/src/histedit.c
+@@ -214,13 +214,8 @@ histcmd(int argc, char **argv)
+ 	if (argc == 1)
+ 		sh_error("missing history argument");
+ 
+-#ifdef __GLIBC__
+-	optind = 0;
+-#else
+-	optreset = 1; optind = 1; /* initialize getopt */
+-#endif
+ 	while (not_fcnumber(argv[optind]) &&
+-	      (ch = getopt(argc, argv, ":e:lnrs")) != -1)
++	      (ch = nextopt(":e:lnrs")) != '\0')
+ 		switch ((char)ch) {
+ 		case 'e':
+ 			editor = optionarg;
+-- 
+2.9.2
+
