@@ -1,5 +1,5 @@
 Package: musl
-Version: 20170912
+Version: 1.1.18
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: musl libc
