@@ -6,7 +6,7 @@ the most useless linux distro
 what makes it special
 ---------------------
 
- nenuzhinx is one of a kind because of the very specific set of software it is built of/with
+ nenuzhnix is one of a kind because of the very specific set of software it is built of/with
 
  unlike most linux distros nenuzhnix is built of "unpopular" software
 
