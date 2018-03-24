@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=musl
+
+case "$1" in
+  build)
+    CC="clang" ./configure --prefix=/ --enable-elf-shlibs --disable-fsck --disable-nls --disable-tls
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install install-libs DESTDIR=$DESTDIR
+    mkdir "$DESTDIR"/bin
+    ln -sf /lib/libc.so "$DESTDIR"/bin/ldd
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
