@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e 
 
-PACKAGE=musl
+PACKAGE=e2fsprogs
 
 case "$1" in
   build)
