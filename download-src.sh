@@ -3,13 +3,13 @@
 download() {
   if [ "$#" -eq 1 ]; then
     echo ${1##*/}
-    curl --progress-bar -O $1
+    wget -q --show-progress -N $1
   elif [ ${1##*.} = gz ]; then
     echo $2
-    curl --progress-bar $1 -o $2
+    wget -q --show-progress -N $1 -O $2
   else
     echo $2
-    curl --progress-bar $1 -o - | xzcat - | gzip - > $2
+    wget -q --show-progress -N $1 -O - | xzcat - | gzip - > $2
   fi
 }
 
