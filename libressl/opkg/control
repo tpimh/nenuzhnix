@@ -1,5 +1,5 @@
 Package: libressl
-Version: 2.6.4
+Version: 2.7.2
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: openssl replacement
