@@ -1,0 +1,341 @@
+--- /dev/null
++++ libedit/CMakeLists.txt
+@@ -0,0 +1,222 @@
++cmake_minimum_required(VERSION 3.1)
++
++INCLUDE (CheckFunctionExists)
++INCLUDE (CheckLibraryExists)
++INCLUDE (CheckTypeSize)
++INCLUDE (CheckIncludeFile)
++INCLUDE (CheckCSourceCompiles)
++
++
++
++# sets HAVE_SYS_TYPES_H, HAVE_STDINT_H, and HAVE_STDDEF_H
++CHECK_TYPE_SIZE(u_int32_t U_INT32_T)
++
++CHECK_INCLUDE_FILE(curses.h HAVE_CURSES_H)
++CHECK_INCLUDE_FILE(ncurses.h HAVE_NCURSES_H)
++CHECK_INCLUDE_FILE(sys/cdefs.h HAVE_SYS_CDEFS_H)
++CHECK_INCLUDE_FILE(termcap.h HAVE_TERMCAP_H)
++CHECK_INCLUDE_FILE(term.h HAVE_TERM_H)
++
++SET(CMAKE_EXTRA_INCLUDE_FILES stdio.h)
++CHECK_FUNCTION_EXISTS(getline HAVE_GETLINE)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++SET(CMAKE_EXTRA_INCLUDE_FILES stdlib.h)
++CHECK_FUNCTION_EXISTS(secure_getenv HAVE_SECURE_GETENV)
++CHECK_FUNCTION_EXISTS(__secure_getenv HAVE___SECURE_GETENV)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++
++SET(CMAKE_EXTRA_INCLUDE_FILES unistd.h)
++CHECK_FUNCTION_EXISTS(issetugid HAVE_ISSETUGID)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++SET(CMAKE_EXTRA_INCLUDE_FILES string.h)
++CHECK_FUNCTION_EXISTS(strlcat HAVE_STRLCAT)
++CHECK_FUNCTION_EXISTS(strlcpy HAVE_STRLCPY)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++SET(CMAKE_EXTRA_INCLUDE_FILES wchar.h)
++CHECK_FUNCTION_EXISTS(wcsdup HAVE_WCSDUP)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++SET(CMAKE_EXTRA_INCLUDE_FILES vis.h)
++CHECK_FUNCTION_EXISTS(vis HAVE_VIS)
++CHECK_FUNCTION_EXISTS(unvis HAVE_UNVIS)
++SET(CMAKE_EXTRA_INCLUDE_FILES)
++
++
++ADD_DEFINITIONS(-D__STDC_ISO_10646__)
++
++
++CHECK_LIBRARY_EXISTS(ncurses tgetent "" HAVE_LIBNCURSES)
++if (NOT HAVE_LIBNCURSES)
++	CHECK_LIBRARY_EXISTS(curses tgetent "" HAVE_LIBCURSES)
++	if (NOT HAVE_LIBCURSES)
++		CHECK_LIBRARY_EXISTS(termcap tgetent "" HAVE_LIBTERMCAP)
++	endif()
++endif()
++CHECK_C_SOURCE_COMPILES("
++#include <stdlib.h>
++#include <sys/types.h>
++#include <pwd.h>
++void main(void) {
++	getpwnam_r(NULL, NULL, NULL, (size_t)0, NULL);
++	getpwuid_r((uid_t)0, NULL, NULL, (size_t)0, NULL);
++}
++"
++HAVE_GETPW_R_POSIX)
++
++CHECK_C_SOURCE_COMPILES("
++#include <stdlib.h>
++#include <sys/types.h>
++#include <pwd.h>
++void main(void) {
++	getpwnam_r(NULL, NULL, NULL, (size_t)0);
++	getpwuid_r((uid_t)0, NULL, NULL, (size_t)0);
++}
++"
++HAVE_GETPW_R_DRAFT)
++
++set(VERSION "3.1")
++set(PACKAGE_NAME "libedit")
++set(PACKAGE_STRING "libedit 3.1")
++
++configure_file(config.h.cmake config.h)
++
++# copy header files to the build dir.
++# these copy everytime cmake runs.
++file(COPY src/histedit.h DESTINATION include)
++file(COPY src/editline/readline.h DESTINATION include)
++
++set(LIBEDIT_SRC 
++	src/chared.c
++	src/chartype.c
++	src/common.c
++	src/el.c
++	src/eln.c
++	src/emacs.c
++	src/filecomplete.c
++	src/hist.c
++	src/history.c
++	src/historyn.c
++	src/keymacro.c
++	src/map.c
++	src/parse.c
++	src/prompt.c
++	src/read.c
++	src/readline.c
++	src/refresh.c
++	src/search.c
++	src/sig.c
++	src/terminal.c
++	src/tokenizer.c
++	src/tokenizern.c
++	src/tty.c
++	src/vi.c
++
++	$<$<NOT:$<BOOL:${HAVE_STRLCAT}>>:src/strlcat.c>
++	$<$<NOT:$<BOOL:${HAVE_STRLCPY}>>:src/strlcpy.c>
++	$<$<NOT:$<BOOL:${HAVE_VIS}>>:src/vis.c>
++	$<$<NOT:$<BOOL:${HAVE_UNVIS}>>:src/unvis.c>
++	$<$<NOT:$<BOOL:${HAVE_WCSDUP}>>:src/wcsdup.c>
++
++)
++
++set(CMAKE_INCLUDE_CURRENT_DIR ON)
++include_directories(src)
++
++# generated headers
++set(GHDR
++	${CMAKE_CURRENT_BINARY_DIR}/common.h
++	${CMAKE_CURRENT_BINARY_DIR}/emacs.h
++	${CMAKE_CURRENT_BINARY_DIR}/vi.h
++	${CMAKE_CURRENT_BINARY_DIR}/fcns.h
++	${CMAKE_CURRENT_BINARY_DIR}/func.h
++	${CMAKE_CURRENT_BINARY_DIR}/help.h
++)
++
++# headers for other people to use.
++set(GINCLUDES
++	${CMAKE_CURRENT_BINARY_DIR}/include/readline.h
++	${CMAKE_CURRENT_BINARY_DIR}/include/histedit.h
++)
++
++add_library(edit SHARED ${LIBEDIT_SRC} ${GHDR} ${GINCLUDES})
++add_library(edit_static STATIC ${LIBEDIT_SRC} ${GHDR} ${GINCLUDES})
++set_target_properties(edit_static PROPERTIES OUTPUT_NAME edit)
++target_link_libraries(edit INTERFACE
++	$<$<BOOL:${HAVE_LIBNCURSES}>:ncurses>
++	$<$<BOOL:${HAVE_LIBCURSES}>:curses>
++	$<$<BOOL:${HAVE_LIBTERMCAP}>:termcap>
++)
++target_link_libraries(edit_static INTERFACE
++        $<$<BOOL:${HAVE_LIBNCURSES}>:ncurses>
++        $<$<BOOL:${HAVE_LIBCURSES}>:curses>            
++        $<$<BOOL:${HAVE_LIBTERMCAP}>:termcap>              
++)                             
++
++target_compile_options(edit PRIVATE -g)
++target_compile_options(edit_static PRIVATE -g)                                       
++
++target_include_directories(edit INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/include)
++target_include_directories(edit_static INTERFACE ${CMAKE_CURRENT_BINARY_DIR}/include)
++
++set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src)
++set(AHDR vi.h emacs.h common.h)
++set(ASRC ${SRC}/vi.c ${SRC}/emacs.c ${SRC}/common.c)
++add_custom_command(
++	OUTPUT ${GHDR}
++	COMMAND sh ${SRC}/makelist -h ${SRC}/common.c > common.h
++	COMMAND sh ${SRC}/makelist -h ${SRC}/emacs.c > emacs.h
++	COMMAND sh ${SRC}/makelist -h ${SRC}/vi.c > vi.h
++	COMMAND sh ${SRC}/makelist -fh ${AHDR} > fcns.h
++	COMMAND sh ${SRC}/makelist -fc ${AHDR} > func.h
++	COMMAND sh ${SRC}/makelist -bh ${ASRC} > help.h
++	DEPENDS ${ASRC}
++	# WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
++)
++
++# copy header files to the build dir.
++# these should only copy if they actually change.
++# add_custom_command(
++# 	OUTPUT include/readline.h include/histedit.h
++# 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SRC}/editline/readline.h ${SRC}/histedit.h include
++# 	DEPENDS ${SRC}/editline/readline.h ${SRC}/histedit.h
++# )
++
++add_custom_command(
++	OUTPUT include/readline.h
++	COMMAND ${CMAKE_COMMAND} -E copy ${SRC}/editline/readline.h include
++	DEPENDS ${SRC}/editline/readline.h
++)
++
++add_custom_command(
++	OUTPUT include/histedit.h
++	COMMAND ${CMAKE_COMMAND} -E copy ${SRC}/histedit.h include
++	DEPENDS ${SRC}/histedit.h
++)
++
++macro(install_symlink filepath symname symdir)
++	install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${CMAKE_CURRENT_BINARY_DIR}/${symname})")
++	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${symname} DESTINATION ${symdir})
++endmacro(install_symlink)
++
++                                                                                                          
++macro(install_empty name dir)
++	install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_CURRENT_BINARY_DIR}/${name})")
++	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${name} DESTINATION ${dir})
++endmacro(install_empty)
++
++install(TARGETS edit edit_static
++	LIBRARY DESTINATION lib
++	ARCHIVE DESTINATION lib)
++install(FILES ${CMAKE_BINARY_DIR}/include/readline.h ${CMAKE_BINARY_DIR}/include/histedit.h DESTINATION include)
++install_symlink(libedit.a libreadline.a lib)
++install_symlink(libedit.so libreadline.so lib)
++install(DIRECTORY DESTINATION include/readline)
++install_symlink(../readline.h readline.h include/readline)
++install_empty(history.h include/readline)
++install_empty(tilde.h include/readline)
++install(DIRECTORY DESTINATION include/editline)
++install_symlink(../readline.h readline.h include/editline)
+--- /dev/null
++++ libedit/config.h.cmake
+@@ -0,0 +1,113 @@
++/* config.h.cmake  */
++
++/* Define to 1 if you have the <curses.h> header file. */
++#cmakedefine HAVE_CURSES_H
++
++/* Define to 1 if you have the <ncurses.h> header file. */
++#cmakedefine HAVE_NCURSES_H
++
++/* Define to 1 if you have the <sys/cdefs.h> header file. */
++#cmakedefine HAVE_SYS_CDEFS_H
++
++/* Define to 1 if you have the <termcap.h> header file. */
++#cmakedefine HAVE_TERMCAP_H
++
++/* Define to 1 if you have the <term.h> header file. */
++#cmakedefine HAVE_TERM_H
++
++/* Define to 1 if you have the <stdint.h> header file. */
++#cmakedefine HAVE_STDINT_H
++
++/* Define to 1 if you have the `getline' function. */
++#cmakedefine HAVE_GETLINE
++
++/* Define to 1 if you have getpwnam_r and getpwuid_r that are draft POSIX.1
++   versions. */
++#cmakedefine HAVE_GETPW_R_DRAFT
++
++/* Define to 1 if you have getpwnam_r and getpwuid_r that are POSIX.1
++   compatible. */
++#cmakedefine HAVE_GETPW_R_POSIX
++
++/* Define to 1 if you have the `issetugid' function. */
++#cmakedefine HAVE_ISSETUGID
++
++/* Define to 1 if you have the `secure_getenv' function. */
++#cmakedefine HAVE_SECURE_GETENV
++
++/* Define to 1 if you have the `__secure_getenv' function. */
++#cmakedefine HAVE___SECURE_GETENV
++
++/* Define to 1 if you have the `strlcat' function. */
++#cmakedefine HAVE_STRLCAT
++
++/* Define to 1 if you have the `strlcpy' function. */
++#cmakedefine HAVE_STRLCPY
++
++/* Define to 1 if the system has the type `u_int32_t'. */
++#cmakedefine HAVE_U_INT32_T
++
++/* Define to 1 if you have the `vis' function. */
++#cmakedefine HAVE_VIS
++
++/* Define to 1 if you have the `unvis' function. */
++#cmakedefine HAVE_UNVIS
++
++/* Define to 1 if you have the `wcsdup' function. */
++#cmakedefine HAVE_WCSDUP
++
++/* Name of package */
++#cmakedefine PACKAGE "@PACKAGE@"
++
++/* Define to the address where bug reports for this package should be sent. */
++#cmakedefine PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
++
++/* Define to the full name of this package. */
++#cmakedefine PACKAGE_NAME "@PACKAGE_NAME@"
++
++/* Define to the full name and version of this package. */
++#cmakedefine PACKAGE_STRING "@PACKAGE_STRING@"
++
++/* Define to the one symbol short name of this package. */
++#cmakedefine PACKAGE_TARNAME "@PACKAGE_TARNAME@"
++
++/* Define to the home page for this package. */
++#cmakedefine PACKAGE_URL "@PACKAGE_URL@"
++
++/* Define to the version of this package. */
++#cmakedefine PACKAGE_VERSION "@PACKAGE_VERSION@"
++
++
++
++/* Enable extensions on AIX 3, Interix.  */
++#ifndef _ALL_SOURCE
++# undef _ALL_SOURCE
++#endif
++/* Enable GNU extensions on systems that have them.  */
++#ifndef _GNU_SOURCE
++# undef _GNU_SOURCE
++#endif
++/* Enable threading extensions on Solaris.  */
++#ifndef _POSIX_PTHREAD_SEMANTICS
++# undef _POSIX_PTHREAD_SEMANTICS
++#endif
++/* Enable extensions on HP NonStop.  */
++#ifndef _TANDEM_SOURCE
++# undef _TANDEM_SOURCE
++#endif
++/* Enable general extensions on Solaris.  */
++#ifndef __EXTENSIONS__
++# undef __EXTENSIONS__
++#endif
++
++
++/* Version number of package */
++#cmakedefine VERSION "@VERSION@"
++
++
++
++#include "sys.h"
++#define SCCSID
++#undef LIBC_SCCS
++#define lint
++

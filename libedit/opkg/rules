@@ -5,25 +5,21 @@ PACKAGE=libedit
 
 case "$1" in
   build)
-    ./configure CC='clang' CFLAGS='-D__STDC_ISO_10646__=201103L' --prefix=/
-    make
+    rm -rf build
+    patch -p1 < opkg/cmake-enable.patch
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX=/
+    ninja -Cbuild -j1
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
-    make install DESTDIR=$DESTDIR
-    ln -sf libedit.a "$DESTDIR"/lib/libreadline.a
-    ln -sf libedit.so "$DESTDIR"/lib/libreadline.so
-    mkdir -p "$DESTDIR"/include/readline
-    touch "$DESTDIR"/include/readline/history.h
-    touch "$DESTDIR"/include/readline/tilde.h
-    ln -sf ../editline/readline.h "$DESTDIR"/include/readline/readline.h
+    DESTDIR=$DESTDIR ninja -Cbuild -j1 install
     ;;
 
   clean)
-    make clean
+    ninja -Cbuild -j1 clean
     ;;
 
   *)
