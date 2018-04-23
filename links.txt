@@ -7,3 +7,4 @@ http://github.com/richgel999/miniz/archive/2.0.7.tar.gz miniz-2.0.7.tar.gz
 http://www.musl-libc.org/releases/musl-1.1.19.tar.gz
 http://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.1.tar.xz netbsd-curses-0.2.1.tar.gz
 http://landley.net/toybox/downloads/toybox-0.7.6.tar.gz
+http://www.libssh2.org/download/libssh2-1.8.0.tar.gz
