@@ -1,0 +1,5 @@
+Package: curl
+Version: 7.59.0
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: multi-protocol data transfer

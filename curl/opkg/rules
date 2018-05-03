@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=curl
+
+case "$1" in
+  build)
+    patch -p1 < opkg/libressl-support.patch
+    ./configure CC='clang' --prefix="" --with-libssh2 --with-ca-path=/etc/ssl --disable-static ac_cv_lib_z_gzread=yes
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
