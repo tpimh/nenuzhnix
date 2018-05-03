@@ -6,7 +6,7 @@ PACKAGE=toybox
 case "$1" in
   build)
     make CC=clang oldconfig
-    make CC=clang
+    make NOSTRIP=1 CC=clang CFLAGS="-Wno-uninitialized"
     ;;
 
   install)
