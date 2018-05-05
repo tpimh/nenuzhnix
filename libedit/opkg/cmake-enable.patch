@@ -148,12 +148,12 @@
 +add_library(edit SHARED ${LIBEDIT_SRC} ${GHDR} ${GINCLUDES})
 +add_library(edit_static STATIC ${LIBEDIT_SRC} ${GHDR} ${GINCLUDES})
 +set_target_properties(edit_static PROPERTIES OUTPUT_NAME edit)
-+target_link_libraries(edit INTERFACE
++target_link_libraries(edit PUBLIC
 +	$<$<BOOL:${HAVE_LIBNCURSES}>:ncurses>
 +	$<$<BOOL:${HAVE_LIBCURSES}>:curses>
 +	$<$<BOOL:${HAVE_LIBTERMCAP}>:termcap>
 +)
-+target_link_libraries(edit_static INTERFACE
++target_link_libraries(edit_static PUBLIC
 +        $<$<BOOL:${HAVE_LIBNCURSES}>:ncurses>
 +        $<$<BOOL:${HAVE_LIBCURSES}>:curses>            
 +        $<$<BOOL:${HAVE_LIBTERMCAP}>:termcap>              
