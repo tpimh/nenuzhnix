@@ -1,0 +1,86 @@
+--- curl-7.59.0/configure.ac
++++ curl/configure.ac
+@@ -184,9 +184,9 @@
+ dnl Detect the canonical host and target build environment
+ dnl
+ 
+-AC_CANONICAL_HOST
++osvar=$(clang --version | sed 's/Target: //;t;d')
+ dnl Get system canonical name
+-AC_DEFINE_UNQUOTED(OS, "${host}", [cpu-machine-OS])
++AC_DEFINE_UNQUOTED(OS, "${osvar}", [cpu-machine-OS])
+ 
+ dnl Checks for programs.
+ 
+@@ -300,7 +300,7 @@
+ # IRIX 6.5.24 gcc 3.3 autobuilds fail unittests library compilation due to
+ # a problem related with OpenSSL headers and library versions not matching.
+ # Disable unit tests while time to further investigate this is found.
+-case $host in
++case $osvar in
+   mips-sgi-irix6.5)
+     if test "$compiler_id" = "GNU_C"; then
+       supports_unittests=no
+@@ -748,7 +748,7 @@
+   dnl This is for winsock systems
+   if test "$curl_cv_header_windows_h" = "yes"; then
+     if test "$curl_cv_header_winsock_h" = "yes"; then
+-      case $host in
++      case $osvar in
+         *-*-mingw32ce*)
+           winsock_LIB="-lwinsock"
+           ;;
+@@ -1383,7 +1383,7 @@
+     LDFLAGS="$LDFLAGS $GSSAPI_LIB_DIR"
+     LIBS="-lgss $LIBS"
+   elif test -z "$GSSAPI_LIB_DIR"; then
+-     case $host in
++     case $osvar in
+      *-*-darwin*)
+         LIBS="-lgssapi_krb5 -lresolv $LIBS"
+         ;;
+@@ -1399,7 +1399,7 @@
+            gss_libs=`$KRB5CONFIG --libs gssapi`
+            LIBS="$gss_libs $LIBS"
+         else
+-           case $host in
++           case $osvar in
+            *-hp-hpux*)
+               gss_libname="gss"
+               ;;
+@@ -1419,7 +1419,7 @@
+      esac
+   else
+      LDFLAGS="$LDFLAGS $GSSAPI_LIB_DIR"
+-     case $host in
++     case $osvar in
+      *-hp-hpux*)
+         LIBS="-lgss $LIBS"
+         ;;
+@@ -1549,7 +1549,7 @@
+   CLEANLIBS="$LIBS"
+ 
+   dnl This is for Msys/Mingw
+-  case $host in
++  case $osvar in
+     *-*-msys* | *-*-mingw*)
+       AC_MSG_CHECKING([for gdi32])
+       my_ac_save_LIBS=$LIBS
+@@ -3577,7 +3577,7 @@
+ CURL_CHECK_FUNC_STRTOLL
+ CURL_CHECK_FUNC_WRITEV
+ 
+-case $host in
++case $osvar in
+   *msdosdjgpp)
+      ac_cv_func_pipe=no
+      skipcheck_pipe=yes
+@@ -4215,7 +4215,7 @@
+ AC_MSG_NOTICE([Configured to build curl/libcurl:
+ 
+   curl version:     ${CURLVERSION}
+-  Host setup:       ${host}
++  Host setup:       ${osvar}
+   Install prefix:   ${prefix}
+   Compiler:         ${CC}
+   SSL support:      ${curl_ssl_msg}
