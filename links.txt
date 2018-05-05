@@ -1,7 +1,7 @@
 http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.9.1.tar.gz
 http://ftp.barfooze.de/pub/sabotage/tarballs/kernel-headers-3.12.6-5.tar.xz kernel-headers-3.12.6.tar.gz
 http://thrysoee.dk/editline/libedit-20170329-3.1.tar.gz libedit-3.1.tar.gz
-http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.7.2.tar.gz
+http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.7.3.tar.gz
 http://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.8rel.2.tar.gz lynx-2.8.8.tar.gz
 http://github.com/richgel999/miniz/archive/2.0.7.tar.gz miniz-2.0.7.tar.gz
 http://www.musl-libc.org/releases/musl-1.1.19.tar.gz
