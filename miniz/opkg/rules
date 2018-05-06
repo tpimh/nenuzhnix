@@ -5,6 +5,7 @@ PACKAGE=miniz
 
 case "$1" in
   build)
+    patch -p1 < opkg/add-inflatereset.patch
     rm -rf build
     mkdir build
     cd build
