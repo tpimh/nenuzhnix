@@ -2,4 +2,4 @@ Package: libssh2
 Version: 1.8.0
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
-Description: SSH2 protocol implementation
+Description: ssh2 protocol implementation
