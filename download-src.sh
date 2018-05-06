@@ -16,3 +16,8 @@ download() {
 while read line; do
   download $line
 done <links.txt
+
+git clone --recursive https://github.com/sba1/simplegit.git simplegit-20180325
+rm -rf simplegit-20180325/.git* simplegit-20180325/genopts/.git* simplegit-20180325/libgit2
+tar cfz simplegit-20180325.tar.gz simplegit-20180325
+rm -rf simplegit-20180325
