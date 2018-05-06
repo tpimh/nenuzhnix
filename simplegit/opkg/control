@@ -1,0 +1,5 @@
+Package: simplegit
+Version: 20180325
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: git replacement

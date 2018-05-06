@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=simplegit
+
+case "$1" in
+  build)
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    mkdir "$DESTDIR"/bin
+    cp bin/sgit "$DESTDIR"/bin
+    cd "$DESTDIR"/bin
+    ln -sf sgit "$DESTDIR"/bin/git
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
