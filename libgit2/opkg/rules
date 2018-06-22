@@ -6,7 +6,6 @@ PACKAGE=libgit2
 case "$1" in
   build)
     rm -rf build
-    patch -p1 < opkg/libressl-fix.patch
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_CLAR=OFF \
       -DOPENSSL_CRYPTO_LIBRARY=/x86_64-pc-linux-musl/lib/libcrypto.so \
       -DOPENSSL_SSL_LIBRARY=/x86_64-pc-linux-musl/lib/libssl.so \
