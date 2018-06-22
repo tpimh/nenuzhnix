@@ -1,4 +1,4 @@
-http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.9.1.tar.gz
+http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.10.2.tar.gz
 http://ftp.barfooze.de/pub/sabotage/tarballs/kernel-headers-3.12.6-5.tar.xz kernel-headers-3.12.6.tar.gz
 http://thrysoee.dk/editline/libedit-20170329-3.1.tar.gz libedit-3.1.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.7.4.tar.gz
