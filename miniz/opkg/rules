@@ -6,34 +6,21 @@ PACKAGE=miniz
 case "$1" in
   build)
     patch -p1 < opkg/add-inflatereset.patch
+    patch -p1 < opkg/cmake.patch
     rm -rf build
-    mkdir build
-    cd build
-    cmake -DCMAKE_C_COMPILER=clang -G Ninja ..
-    ninja -j1
-    cmake -DCMAKE_C_COMPILER=clang -DBUILD_SHARED_LIBS=ON -G Ninja ..
-    ninja -j1
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX=""
+    ninja -Cbuild -j1
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
-    install -D -m 644 build/libminiz.a "$DESTDIR"/lib/libminiz.a
-    install -D -m 644 build/libminiz.so "$DESTDIR"/lib/libminiz.so
-    ln -sf libminiz.a "$DESTDIR"/lib/libz.a
-    ln -sf libminiz.so "$DESTDIR"/lib/libz.so
-    install -D -m 644 miniz.h "$DESTDIR"/include/miniz.h
-    install -D -m 644 miniz_common.h "$DESTDIR"/include/miniz_common.h
-    install -D -m 644 miniz_tdef.h "$DESTDIR"/include/miniz_tdef.h
-    install -D -m 644 miniz_tinfl.h "$DESTDIR"/include/miniz_tinfl.h
-    install -D -m 644 miniz_zip.h "$DESTDIR"/include/miniz_zip.h
-    touch "$DESTDIR"/include/zconf.h
-    ln -sf miniz.h "$DESTDIR"/include/zlib.h
+    DESTDIR=$DESTDIR ninja -Cbuild -j1 install
     ;;
 
   clean)
-    rm -rf build
+    #rm -rf build
     ;;
 
   *)
