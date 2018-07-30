@@ -6,7 +6,7 @@ PACKAGE=dash
 case "$1" in
   build)
     patch -p1 < opkg/musl-support.patch
-    ./configure CC='clang' --with-libedit --prefix=/
+    ./configure CC='clang' --with-libedit --prefix=""
     make
     ;;
 

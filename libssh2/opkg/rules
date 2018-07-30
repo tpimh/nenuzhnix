@@ -7,13 +7,7 @@ case "$1" in
   build)
     rm -rf build
     patch -p1 < opkg/miniz-undef.patch
-    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_INSTALL_LIBDIR="lib" \
-      -DCRYPTO_BACKEND=OpenSSL -DENABLE_ZLIB_COMPRESSION=ON -DBUILD_SHARED_LIBS=ON \
-      -DOPENSSL_CRYPTO_LIBRARY=/x86_64-pc-linux-musl/lib/libcrypto.so \
-      -DOPENSSL_SSL_LIBRARY=/x86_64-pc-linux-musl/lib/libssl.so \
-      -DOPENSSL_INCLUDE_DIR=/x86_64-pc-linux-musl/include/openssl \
-      -DZLIB_LIBRARY=/x86_64-pc-linux-musl/lib/libz.so \
-      -DZLIB_INCLUDE_DIR=/x86_64-pc-linux-musl/include
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_INSTALL_LIBDIR="lib" -DCRYPTO_BACKEND=OpenSSL -DENABLE_ZLIB_COMPRESSION=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
     ninja -Cbuild -j1
     ;;
 

@@ -10,7 +10,7 @@ case "$1" in
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
-    make ARCH=x86_64 prefix=/ DESTDIR=/tmp/$PACKAGE install
+    make ARCH=x86_64 prefix="" DESTDIR=/tmp/$PACKAGE install
     ;;
 
   clean)

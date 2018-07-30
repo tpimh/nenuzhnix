@@ -5,7 +5,7 @@ PACKAGE=lynx
 
 case "$1" in
   build)
-    ./configure CC='clang' --prefix=/ --with-ssl --enable-ipv6 --disable-nls
+    ./configure CC='clang' --prefix="" --with-ssl --enable-ipv6 --disable-nls
     make
     ;;
 

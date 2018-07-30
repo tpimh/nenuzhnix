@@ -8,7 +8,7 @@ case "$1" in
     patch -p1 < opkg/add-inflatereset.patch
     patch -p1 < opkg/cmake.patch
     rm -rf build
-    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX=""
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
     ninja -Cbuild -j1
     ;;
 

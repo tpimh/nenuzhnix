@@ -6,12 +6,7 @@ PACKAGE=libgit2
 case "$1" in
   build)
     rm -rf build
-    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_CLAR=OFF \
-      -DOPENSSL_CRYPTO_LIBRARY=/x86_64-pc-linux-musl/lib/libcrypto.so \
-      -DOPENSSL_SSL_LIBRARY=/x86_64-pc-linux-musl/lib/libssl.so \
-      -DOPENSSL_INCLUDE_DIR=/x86_64-pc-linux-musl/include/openssl \
-      -DZLIB_LIBRARY=/x86_64-pc-linux-musl/lib/libz.so \
-      -DZLIB_INCLUDE_DIR=/x86_64-pc-linux-musl/include
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_CLAR=OFF -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
     ninja -Cbuild -j1
     ;;
 

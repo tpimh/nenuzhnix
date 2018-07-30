@@ -6,7 +6,7 @@ PACKAGE=musl
 case "$1" in
   build)
     patch -p1 < opkg/dummy-crts.patch
-    ./configure LIBCC="$(clang -print-libgcc-file-name)" CC='clang' --prefix=/
+    ./configure LIBCC="$(clang -print-libgcc-file-name)" CC='clang' --prefix=""
     make
     ;;
 

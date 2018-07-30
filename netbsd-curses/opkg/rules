@@ -8,7 +8,7 @@ case "$1" in
     cat << EOF > config.mak
 CC=clang
 CFLAGS=-fPIC
-PREFIX=/
+PREFIX=""
 DESTDIR=/tmp/$PACKAGE
 EOF
     make
