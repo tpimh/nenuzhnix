@@ -1,0 +1,14 @@
+--- a/libarchive/archive_version_details.c.orig
++++ b/libarchive/archive_version_details.c
+@@ -65,7 +65,11 @@
+ 
+ 		archive_strcat(&str, ARCHIVE_VERSION_STRING);
+ 		if (zlib != NULL) {
++#ifdef MZ_VERSION
++			archive_strcat(&str, " miniz/");
++#else
+ 			archive_strcat(&str, " zlib/");
++#endif
+ 			archive_strcat(&str, zlib);
+ 		}
+ 		if (liblzma) {
