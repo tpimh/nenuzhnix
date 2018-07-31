@@ -3,13 +3,18 @@
 download() {
   if [ "$#" -eq 1 ]; then
     echo ${1##*/}
+    rm -f ${1##*/}
     wget -q --show-progress -N $1
   elif [ ${1##*.} = gz ]; then
     echo $2
+    rm -f ${1##*/} $2
     wget -q --show-progress -N $1 -O $2
   else
     echo $2
-    wget -q --show-progress -N $1 -O - | xzcat - | gzip - > $2
+    rm ${1##*/} $2
+    wget -q --show-progress -N $1
+    bsdcat ${1##*/} | gzip - > $2
+    rm ${1##*/}
   fi
 }
 
