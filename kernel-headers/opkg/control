@@ -1,5 +1,5 @@
 Package: kernel-headers
-Version: 3.12.6-5
+Version: 3.12.6-6
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: linux kernel headers

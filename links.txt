@@ -1,11 +1,11 @@
 http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.10.2.tar.gz
-http://ftp.barfooze.de/pub/sabotage/tarballs/kernel-headers-3.12.6-5.tar.xz kernel-headers-3.12.6.tar.gz
+http://ftp.barfooze.de/pub/sabotage/tarballs/kernel-headers-3.12.6-6.tar.xz kernel-headers-3.12.6.tar.gz
 http://thrysoee.dk/editline/libedit-20180525-3.1.tar.gz libedit-3.1.tar.gz
 http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.7.4.tar.gz
 http://invisible-mirror.net/archives/lynx/tarballs/lynx2.8.9rel.1.tar.gz lynx-2.8.9.tar.gz
 http://github.com/richgel999/miniz/archive/2.0.7.tar.gz miniz-2.0.7.tar.gz
 http://www.musl-libc.org/releases/musl-1.1.19.tar.gz
-http://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.1.tar.xz netbsd-curses-0.2.1.tar.gz
+http://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.2.tar.xz netbsd-curses-0.2.2.tar.gz
 http://landley.net/toybox/downloads/toybox-0.7.7.tar.gz
 http://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 http://curl.haxx.se/download/curl-7.60.0.tar.gz
