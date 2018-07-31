@@ -12,3 +12,5 @@ http://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 http://curl.haxx.se/download/curl-7.61.0.tar.gz
 http://github.com/libgit2/libgit2/archive/v0.27.3.tar.gz libgit2-0.27.3.tar.gz
 https://matt.ucc.asn.au/dropbear/releases/dropbear-2018.76.tar.bz2
+http://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.44.3/e2fsprogs-1.44.3.tar.gz
+http://www.crufty.net/ftp/pub/sjg/bmake-20180512.tar.gz

@@ -1,0 +1,5 @@
+Package: e2fsprogs
+Version: 1.44.3
+Architecture: x86_64
+Maintainer: protonesso <nagakamira@gmail.com>
+Description: Ext2/3/4 filesystem utilities

@@ -1,0 +1,33 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=bmake
+
+case "$1" in
+  build)
+    _links_orig="dep doc init lib links man nls obj own prog subdir"
+    _links_new="dep doc inc init lib links man nls obj own prog subdir"
+    sed -i -e "s/$_links_orig/$_links_new/" mk/install-mk
+    mkdir -p bmake-build
+    cd bmake-build
+    sh ../bmake/boot-strap --prefix=""
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    install -dm0755 $DESTDIR/bin
+    install -dm0755 $DESTDIR/share/man/cat1
+    install -dm0755 $DESTDIR/share/licenses/$PACKAGE
+    sh ../bmake/boot-strap --prefix="" --install-destdir=$DESTDIR op=install
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

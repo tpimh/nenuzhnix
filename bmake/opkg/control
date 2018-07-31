@@ -1,0 +1,5 @@
+Package: bmake
+Version: 20180512
+Architecture: x86_64
+Maintainer: protonesso <nagakamira@gmail.com>
+Description: make build tool from netbsd
