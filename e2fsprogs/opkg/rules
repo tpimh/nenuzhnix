@@ -14,8 +14,6 @@ case "$1" in
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
     make install install-libs DESTDIR=$DESTDIR
-    mkdir "$DESTDIR"/bin
-    ln -sf /lib/libc.so "$DESTDIR"/bin/ldd
     ;;
 
   clean)
