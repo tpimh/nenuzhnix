@@ -15,3 +15,4 @@ http://matt.ucc.asn.au/dropbear/releases/dropbear-2018.76.tar.bz2 dropbear-2018.
 http://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.1.tar.xz netbsd-curses-0.2.1.tar.gz
 http://landley.net/toybox/downloads/toybox-0.7.6.tar.gz
 http://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.44.4/e2fsprogs-1.44.4.tar.gz
+http://git.yoctoproject.org/cgit/cgit.cgi/opkg/snapshot/opkg-0.3.6.tar.gz
