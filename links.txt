@@ -10,7 +10,7 @@ http://landley.net/toybox/downloads/toybox-0.7.7.tar.gz
 http://www.libarchive.org/downloads/libarchive-3.3.2.tar.gz
 http://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 http://curl.haxx.se/download/curl-7.61.0.tar.gz
-http://github.com/libgit2/libgit2/archive/v0.27.3.tar.gz libgit2-0.27.3.tar.gz
+http://github.com/libgit2/libgit2/archive/v0.27.4.tar.gz libgit2-0.27.4.tar.gz
 http://matt.ucc.asn.au/dropbear/releases/dropbear-2018.76.tar.bz2 dropbear-2018.76.tar.gz
 http://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.1.tar.xz netbsd-curses-0.2.1.tar.gz
 http://landley.net/toybox/downloads/toybox-0.7.6.tar.gz

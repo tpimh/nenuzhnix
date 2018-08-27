@@ -1,0 +1,69 @@
+From 2e2d8c6493ec4d151c55d7421c93126267ee8e6d Mon Sep 17 00:00:00 2001
+From: Patrick Steinhardt <ps@pks.im>
+Date: Fri, 24 Aug 2018 09:53:39 +0200
+Subject: [PATCH] cmake: detect and use libc-provided iconv
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+While most systems provide a separate iconv library against which
+applications can link, musl based systems do not provide such a library.
+Instead, iconv functions are directly included in the C library. As our
+current CMake module to locate the iconv library only checks whether a
+library exists somewhere in the typical library directories, we will
+never build libgit2 with libiconv support on such systems.
+
+Extend the iconv module to also search whether libc provides iconv
+functions, which we do by checking whether the `iconv_open` function
+exists inside of libc. If this is the case, we will default to use the
+libc provided one instead of trying to use a separate libiconv. While
+this changes which iconv we use on systems where both libc and an
+external libiconv exist, to the best of my knowledge common systems only
+provide either one or the other.
+
+Note that libiconv support in musl is held kind of basic. To quote musl
+libc's page on functional differences from glibc [1]:
+
+    The iconv implementation musl is very small and oriented towards
+    being unobtrusive to static link. Its character set/encoding
+    coverage is very strong for its size, but not comprehensive like
+    glibc’s.
+
+As we assume iconv to be a lot more capable than what musl provides,
+some of our tests will fail if using iconv on musl-based platforms.
+
+[1]: https://wiki.musl-libc.org/functional-differences-from-glibc.html
+---
+ cmake/Modules/FindIconv.cmake | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/cmake/Modules/FindIconv.cmake b/cmake/Modules/FindIconv.cmake
+index 95414bda6f..3c66cdad41 100644
+--- a/cmake/Modules/FindIconv.cmake
++++ b/cmake/Modules/FindIconv.cmake
+@@ -12,14 +12,19 @@ IF(ICONV_INCLUDE_DIR AND ICONV_LIBRARIES)
+ ENDIF()
+ 
+ FIND_PATH(ICONV_INCLUDE_DIR iconv.h)
++CHECK_FUNCTION_EXISTS(iconv_open libc_has_iconv)
+ FIND_LIBRARY(iconv_lib NAMES iconv libiconv libiconv-2 c)
+ 
+-IF(ICONV_INCLUDE_DIR AND iconv_lib)
+-	 SET(ICONV_FOUND TRUE)
+-ENDIF()
+-
+-IF(ICONV_FOUND)
+-	# split iconv into -L and -l linker options, so we can set them for pkg-config
++IF(ICONV_INCLUDE_DIR AND libc_has_iconv)
++	SET(ICONV_FOUND TRUE)
++	SET(ICONV_LIBRARIES "")
++	IF(NOT ICONV_FIND_QUIETLY)
++		MESSAGE(STATUS "Found Iconv: provided by libc")
++	ENDIF(NOT ICONV_FIND_QUIETLY)
++ELSEIF(ICONV_INCLUDE_DIR AND iconv_lib)
++	SET(ICONV_FOUND TRUE)
++	# split iconv into -L and -l linker options, so we can
++	# set them for pkg-config
+ 	GET_FILENAME_COMPONENT(iconv_path ${iconv_lib} PATH)
+ 	GET_FILENAME_COMPONENT(iconv_name ${iconv_lib} NAME_WE)
+ 	STRING(REGEX REPLACE "^lib" "" iconv_name ${iconv_name})
