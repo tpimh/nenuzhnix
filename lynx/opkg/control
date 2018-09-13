@@ -1,5 +1,5 @@
 Package: lynx
-Version: 2.8.9-1.1
+Version: 2.8.9-1
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: cli web browser
