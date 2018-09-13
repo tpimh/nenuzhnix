@@ -12,7 +12,5 @@ https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
 https://curl.haxx.se/download/curl-7.61.0.tar.gz
 https://github.com/libgit2/libgit2/archive/v0.27.4.tar.gz libgit2-0.27.4.tar.gz
 https://matt.ucc.asn.au/dropbear/releases/dropbear-2018.76.tar.bz2 dropbear-2018.76.tar.gz
-https://ftp.barfooze.de/pub/sabotage/tarballs/netbsd-curses-0.2.1.tar.xz netbsd-curses-0.2.1.tar.gz
-https://landley.net/toybox/downloads/toybox-0.7.6.tar.gz
 https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.44.4/e2fsprogs-1.44.4.tar.gz
 https://git.yoctoproject.org/cgit/cgit.cgi/opkg/snapshot/opkg-0.3.6.tar.gz
