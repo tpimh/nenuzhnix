@@ -5,7 +5,6 @@ PACKAGE=libarchive
 
 case "$1" in
   build)
-    patch -p1 < opkg/libressl-fix.patch
     patch -p1 < opkg/miniz-support.patch
     patch -p1 < opkg/miniz-version.patch
     rm -rf build-ninja
