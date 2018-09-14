@@ -31,7 +31,7 @@ do
   BASEVER=$(echo $VER | cut -d- -f1)
   SUFFIX=$(echo $VER | cut -d- -f2)
   REPO=$(getfield $PACKAGE Repo)
-  FILENAME=$(getfield $PACKAGE Filename)
+  FILENAME=$(getfield $PACKAGE Tarname)
   if [ -z "$FILENAME" ]
   then
     FILENAME='${PKG}-${BASEVER}.tar.gz'

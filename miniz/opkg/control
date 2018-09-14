@@ -4,4 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: zlib replacement
 Repo: https://github.com/richgel999/${PKG}/archive/
-Filename: ${VER}.tar.gz
+Tarname: ${VER}.tar.gz

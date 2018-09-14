@@ -4,4 +4,4 @@ Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: cli web browser
 Repo: https://invisible-mirror.net/archives/${PKG}/tarballs/
-Filename: ${PKG}${BASEVER}rel.${SUFFIX}.tar.gz
+Tarname: ${PKG}${BASEVER}rel.${SUFFIX}.tar.gz

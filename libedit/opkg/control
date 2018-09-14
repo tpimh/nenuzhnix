@@ -4,4 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: readline replacement
 Repo: https://thrysoee.dk/editline/
-Filename: ${PKG}-${SUFFIX}-${BASEVER}.tar.gz
+Tarname: ${PKG}-${SUFFIX}-${BASEVER}.tar.gz

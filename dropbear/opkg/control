@@ -4,4 +4,4 @@ Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: simple ssh clieant and server
 Repo: https://matt.ucc.asn.au/${PKG}/releases/
-Filename: ${PKG}-${VER}.tar.bz2
+Tarname: ${PKG}-${VER}.tar.bz2

@@ -4,4 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: linux kernel headers
 Repo: https://ftp.barfooze.de/pub/sabotage/tarballs/
-Filename: ${PKG}-${VER}.tar.xz
+Tarname: ${PKG}-${VER}.tar.xz
