@@ -3,3 +3,4 @@ Version: 0.3.6
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: small and simple package manager
+Repo: https://git.yoctoproject.org/cgit/cgit.cgi/${PKG}/snapshot/

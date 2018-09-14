@@ -3,3 +3,4 @@ Version: 3.3.3
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: archive library
+Repo: https://${PKG}.org/downloads/

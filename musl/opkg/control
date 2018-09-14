@@ -3,3 +3,4 @@ Version: 1.1.19
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: musl libc
+Repo: https://www.${PKG}-libc.org/releases/

@@ -3,3 +3,5 @@ Version: 3.1-20180525
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: readline replacement
+Repo: https://thrysoee.dk/editline/
+Filename: ${PKG}-${SUFFIX}-${BASEVER}.tar.gz

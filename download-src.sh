@@ -1,5 +1,11 @@
 #!/bin/sh
 
+PACKAGES=$(find . -maxdepth 2 -mindepth 2 -name 'opkg' -type d | sed 's/\.\/\(.*\)\/opkg/\1/')
+
+getfield() {
+  grep -e "^$2: " $1/opkg/control | sed 's/^'$2': \(.*\)$/\1/'
+}
+
 download() {
   if [ "$#" -eq 1 ]; then
     echo ${1##*/}
@@ -18,11 +24,33 @@ download() {
   fi
 }
 
-while read line; do
-  download $line
-done <links.txt
+for PACKAGE in $PACKAGES
+do
+  PKG=$(getfield $PACKAGE Package)
+  VER=$(getfield $PACKAGE Version)
+  BASEVER=$(echo $VER | cut -d- -f1)
+  SUFFIX=$(echo $VER | cut -d- -f2)
+  REPO=$(getfield $PACKAGE Repo)
+  FILENAME=$(getfield $PACKAGE Filename)
+  if [ -z "$FILENAME" ]
+  then
+    FILENAME='${PKG}-${BASEVER}.tar.gz'
+  else
+    RENAME="${PKG}-${BASEVER}.tar.gz"
+  fi
+  LINK=$(echo $REPO$FILENAME | sed -e "s/\${PKG}/$PKG/g" -e "s/\${VER}/$VER/g" -e "s/\${BASEVER}/$BASEVER/g" -e "s/\${SUFFIX}/$SUFFIX/g")
 
-git clone --recursive https://github.com/sba1/simplegit.git simplegit-20180325
-rm -rf simplegit-20180325/.git* simplegit-20180325/genopts/.git* simplegit-20180325/libgit2
-tar cfz simplegit-20180325.tar.gz simplegit-20180325
-rm -rf simplegit-20180325
+  if [ "$PACKAGE" != "$PKG" ]
+  then
+    echo Package name mismatch: "$PACKAGE" != "$PKG"
+  fi
+
+  if [ -z "$REPO" ]
+  then
+    echo "$PKG" has no external source
+  else
+    download $LINK $RENAME
+  fi
+
+  unset PKG VER BASEVER SUFFIX REPO FILENAME RENAME LINK
+done

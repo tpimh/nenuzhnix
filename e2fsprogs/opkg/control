@@ -3,3 +3,4 @@ Version: 1.44.4
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: ext2/3/4 filesystem utilities
+Repo: https://mirrors.edge.kernel.org/pub/linux/kernel/people/tytso/${PKG}/v${VER}/
