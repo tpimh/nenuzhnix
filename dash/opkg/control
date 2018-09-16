@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: shell
 Repo: http://gondor.apana.org.au/~herbert/${PKG}/files/
+SourceMD5: 8f485f126c05d0ab800e85abfe1987aa

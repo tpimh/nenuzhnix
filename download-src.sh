@@ -10,16 +10,16 @@ download() {
   if [ "$#" -eq 1 ]; then
     echo ${1##*/}
     rm -f ${1##*/}
-    wget -q --show-progress -N $1
+    curl -Sq --progress-bar -O $1
   elif [ ${1##*.} = gz ]; then
     echo $2
     rm -f ${1##*/} $2
-    wget -q --show-progress -N $1 -O $2
+    curl -Sq --progress-bar $1 -o $2
   else
     echo $2
     rm -f ${1##*/} $2
-    wget -q --show-progress -N $1
-    bsdcat ${1##*/} | gzip - > $2
+    curl -Sq --progress-bar -O $1
+    bsdcat ${1##*/} | gzip -n - > $2
     rm ${1##*/}
   fi
 }
@@ -39,18 +39,33 @@ do
     RENAME="${PKG}-${BASEVER}.tar.gz"
   fi
   LINK=$(echo $REPO$FILENAME | sed -e "s/\${PKG}/$PKG/g" -e "s/\${VER}/$VER/g" -e "s/\${BASEVER}/$BASEVER/g" -e "s/\${SUFFIX}/$SUFFIX/g")
+  CHECKSUM=$(getfield $PACKAGE SourceMD5)
 
   if [ "$PACKAGE" != "$PKG" ]
   then
     echo Package name mismatch: "$PACKAGE" != "$PKG"
   fi
-
-  if [ -z "$REPO" ]
+ 
+  if [ ! -z "$REPO" ]
   then
-    echo "$PKG" has no external source
-  else
-    download $LINK $RENAME
+    if [ -e "${PKG}-${BASEVER}.tar.gz" ]
+    then
+      if [ "$CHECKSUM  ${PKG}-${BASEVER}.tar.gz" != "$(md5sum "${PKG}-${BASEVER}.tar.gz")" ]
+      then
+        echo Wrong checksum of tarball for $PKG
+        rm "${PKG}-${BASEVER}.tar.gz"
+      fi
+    fi
+
+    if [ ! -e "${PKG}-${BASEVER}.tar.gz" ]
+    then
+      download $LINK $RENAME
+      if [ "$CHECKSUM  ${PKG}-${BASEVER}.tar.gz" != "$(md5sum "${PKG}-${BASEVER}.tar.gz")" ]
+      then
+        echo Downloaded tarball for $PKG has wrong checksum
+      fi
+    fi
   fi
 
-  unset PKG VER BASEVER SUFFIX REPO FILENAME RENAME LINK
+  unset PKG VER BASEVER SUFFIX REPO FILENAME RENAME LINK CHECKSUM
 done

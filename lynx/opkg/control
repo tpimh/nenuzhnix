@@ -5,3 +5,4 @@ Maintainer: protonesso <nagakamira@gmail.com>
 Description: cli web browser
 Repo: https://invisible-mirror.net/archives/${PKG}/tarballs/
 Tarname: ${PKG}${BASEVER}rel.${SUFFIX}.tar.gz
+SourceMD5: 899e3531cc9446e73dc5ebe63ea5f062

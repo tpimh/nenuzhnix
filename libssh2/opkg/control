@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: ssh2 protocol implementation
 Repo: https://${PKG}.org/download/
+SourceMD5: 3d1147cae66e2959ea5441b183de1b1c

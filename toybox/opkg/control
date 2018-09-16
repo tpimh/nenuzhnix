@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: multi-call swiss army knife
 Repo: https://landley.net/${PKG}/downloads/
+SourceMD5: 4be5a213b8e6461594f842e6273dabbd

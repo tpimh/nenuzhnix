@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: openssl replacement
 Repo: https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/
+SourceMD5: 94ce8f4cdbb6b57565da61e380d63045

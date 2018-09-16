@@ -5,3 +5,4 @@ Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: git protocol implementation
 Repo: https://github.com/${PKG}/${PKG}/archive/
 Tarname: v${VER}.tar.gz
+SourceMD5: b6e9758864d8175a5636466e64dbaf14

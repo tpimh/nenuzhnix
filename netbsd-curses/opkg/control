@@ -5,3 +5,4 @@ Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: lightweight curses library from netbsd
 Repo: https://ftp.barfooze.de/pub/sabotage/tarballs/
 Tarname: ${PKG}-${VER}.tar.xz
+SourceMD5: 237f21c1faba41a34399fe33e879968b

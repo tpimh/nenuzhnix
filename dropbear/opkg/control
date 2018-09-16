@@ -5,3 +5,4 @@ Maintainer: protonesso <nagakamira@gmail.com>
 Description: simple ssh clieant and server
 Repo: https://matt.ucc.asn.au/${PKG}/releases/
 Tarname: ${PKG}-${VER}.tar.bz2
+SourceMD5: 1308bfb4d52713025f2a260c42c9834e

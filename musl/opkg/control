@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: musl libc
 Repo: https://www.${PKG}-libc.org/releases/
+SourceMD5: 399784355ef84d800623ef5e3f51e8b8

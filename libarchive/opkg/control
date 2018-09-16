@@ -4,3 +4,4 @@ Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: archive library
 Repo: https://${PKG}.org/downloads/
+SourceMD5: 4038e366ca5b659dae3efcc744e72120
