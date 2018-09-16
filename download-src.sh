@@ -9,16 +9,15 @@ getfield() {
 download() {
   if [ "$#" -eq 1 ]; then
     echo ${1##*/}
-    rm -f ${1##*/}
-    curl -Sq --progress-bar -O $1
+    curl -LSq --progress-bar -O $1
   elif [ ${1##*.} = gz ]; then
     echo $2
-    rm -f ${1##*/} $2
-    curl -Sq --progress-bar $1 -o $2
+    rm -f ${1##*/}
+    curl -LSq --progress-bar $1 -o $2
   else
     echo $2
-    rm -f ${1##*/} $2
-    curl -Sq --progress-bar -O $1
+    rm -f ${1##*/}
+    curl -LSq --progress-bar -O $1
     bsdcat ${1##*/} | gzip -n - > $2
     rm ${1##*/}
   fi

@@ -5,4 +5,4 @@ Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: linux kernel headers
 Repo: https://ftp.barfooze.de/pub/sabotage/tarballs/
 Tarname: ${PKG}-${VER}.tar.xz
-SourceMD5: e6bc3ff52e7d5fc670f4447103a524b7
+SourceMD5: ada2235266f7c802fc5b45c8bbca0bea

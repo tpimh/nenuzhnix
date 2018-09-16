@@ -5,4 +5,4 @@ Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: zlib replacement
 Repo: https://github.com/richgel999/${PKG}/archive/
 Tarname: ${VER}.tar.gz
-SourceMD5: afdcc2973a17d7202404d130ce0c4a9e
+SourceMD5: 7fb2d837afbe22caa602908f03024bfb
