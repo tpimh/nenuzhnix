@@ -1,7 +1,7 @@
 Package: libressl
-Version: 2.7.4
+Version: 2.8.1
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: openssl replacement
 Repo: https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/
-SourceMD5: 94ce8f4cdbb6b57565da61e380d63045
+SourceMD5: 05584d44c12323c5f17232a9085011e6
