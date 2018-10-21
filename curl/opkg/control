@@ -1,7 +1,7 @@
 Package: curl
-Version: 7.61.0
+Version: 7.61.1
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: multi-protocol data transfer
 Repo: https://${PKG}.haxx.se/download/
-SourceMD5: ef343f64daab4691f528697b58a2d984
+SourceMD5: 4762f41ef0dba751d1c7a3060a1c6ec6

@@ -1,6 +1,6 @@
 --- a/lib/vtls/openssl.c
 +++ b/lib/vtls/openssl.c
-@@ -117,12 +117,7 @@
+@@ -129,12 +129,7 @@
  #define X509_get0_notBefore(x) X509_get_notBefore(x)
  #define X509_get0_notAfter(x) X509_get_notAfter(x)
  #define CONST_EXTS /* nope */
@@ -14,7 +14,7 @@
  #define OpenSSL_version_num() SSLeay()
  #endif
  #endif
-@@ -3527,7 +3522,11 @@ static size_t Curl_ossl_version(char *buffer, size_t s
+@@ -3698,7 +3693,11 @@
    unsigned long ssleay_value;
    sub[2]='\0';
    sub[1]='\0';
