@@ -1,8 +1,8 @@
 Package: miniz
-Version: 2.0.7
+Version: 2.0.8
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: zlib replacement
 Repo: https://github.com/richgel999/${PKG}/archive/
 Tarname: ${VER}.tar.gz
-SourceMD5: 7fb2d837afbe22caa602908f03024bfb
+SourceMD5: cc9963ad9ab3e570aa811ec804db37dc
