@@ -14,6 +14,7 @@ case "$1" in
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     PREFIX=/tmp/$PACKAGE/bin make CC=clang install_flat
+    rm -rf /tmp/$PACKAGE/bin/{reset,clear}
     ;;
 
   clean)
