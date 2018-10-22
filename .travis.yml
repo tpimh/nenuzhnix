@@ -1,0 +1,11 @@
+language: generic
+
+sudo: required
+
+script:
+  - cd ..
+  - git clone https://github.com/tpimh/nenuzhnix-build
+  - cd nenuzhnix-build
+  - mkdir alpine
+  - mv ../nenuzhnix alpine
+  - ./build-all.sh
