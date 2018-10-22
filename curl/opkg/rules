@@ -9,7 +9,7 @@ case "$1" in
     patch -p1 < opkg/clang-triple.patch
     patch -p1 < opkg/miniz-version.patch
     autoconf
-    ./configure CC='clang' --prefix="" --with-libssh2 --with-ca-path=/etc/ssl --disable-static ac_cv_lib_z_gzread=yes
+    ./configure CC='clang' --prefix="" --with-libssh2 --with-ca-path=/etc/ssl --with-ca-bundle=/etc/ssl/cert.pem --disable-static ac_cv_lib_z_gzread=yes
     make
     ;;
 
