@@ -5,7 +5,6 @@ PACKAGE=toybox
 
 case "$1" in
   build)
-    patch -p1 < opkg/gcc-to-cc.patch
     make CC=clang defconfig
     make NOSTRIP=1 CC=clang CFLAGS="-Wno-uninitialized"
     ;;
