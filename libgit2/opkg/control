@@ -1,8 +1,8 @@
 Package: libgit2
-Version: 0.27.5
+Version: 0.27.7
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: git protocol implementation
 Repo: https://github.com/${PKG}/${PKG}/archive/
 Tarname: v${VER}.tar.gz
-SourceMD5: db082b0fa83c09d8c5d87ab2654a7159
+SourceMD5: 5f3ef881ba0444254f765a2f0a1f3479
