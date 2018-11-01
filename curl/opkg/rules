@@ -5,7 +5,6 @@ PACKAGE=curl
 
 case "$1" in
   build)
-    patch -p1 < opkg/libressl-support.patch
     patch -p1 < opkg/clang-triple.patch
     patch -p1 < opkg/miniz-version.patch
     autoconf
