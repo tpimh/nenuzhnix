@@ -12,24 +12,28 @@ what makes it special
 
  the most special thing about nenuzhnix is it's llvm-based toolchain called ngtc
 
+how to try it the easy way
+--------------------------
+
+- `git clone https://github.com/tpimh/nenuzhnix-build && cd nenuzhnix-build && ./install_nenuzhnix.sh`
+
 what it has now
 ---------------
 
  - console
  - interactive shell
- - a web browser (thanks, protonesso!)
+ - package manager (opkg)
+ - web browser (thanks, protonesso!)
 
 what it doesn't have at the moment
 ----------------------------------
 
  - most of the tools you might need
- - package manager (opkg will be added soon)
  - the kernel (so it's not yet a proper distro)
 
 what it will have in the future
 -------------------------------
 
- - package manager (milestone 0.0.5)
  - linux kernel (milestone 0.1)
  - graphical interface (milestone 1.0) 
 
