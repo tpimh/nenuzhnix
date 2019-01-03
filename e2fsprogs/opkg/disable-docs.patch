@@ -1,5 +1,5 @@
---- e2fsprogs-1.44.4-orig/Makefile.in
-+++ e2fsprogs-1.44.4/Makefile.in
+--- e2fsprogs-1.44.5/Makefile.in
++++ e2fsprogs/Makefile.in
 @@ -31,7 +31,6 @@
  all:: subs
  	$(MAKE) libs
@@ -14,7 +14,7 @@
  install: subs all-libs-recursive install-progs-recursive \
 -  install-shlibs-libs-recursive install-doc-libs
 +  install-shlibs-libs-recursive
- 	if test ! -d e2fsck && test ! -d debugfs && test ! -d misc && test ! -d ext2ed ; then $(MAKE) install-libs ; fi
+ @SUBSET_CMT@	$(MAKE) install-libs
  
  install-strip: subs all-libs-recursive install-strip-progs-recursive \
 -  install-shlibs-strip-libs-recursive install-doc-libs
@@ -25,7 +25,7 @@
  
  install-libs: install-libs-recursive
  
-@@ -114,10 +113,10 @@
+@@ -118,10 +117,10 @@
  
  mostlyclean: mostlyclean-recursive mostlyclean-local
  

@@ -5,7 +5,6 @@ PACKAGE=e2fsprogs
 
 case "$1" in
   build)
-    patch -p1 < opkg/remove-gnuc_prereq.patch
     patch -p1 < opkg/disable-docs.patch
     CC="clang" CFLAGS="-Wno-unused-command-line-argument" ./configure --prefix="" --disable-rpath --enable-elf-shlibs --disable-fsck --disable-nls --disable-tls
     make
