@@ -1,14 +1,13 @@
---- curl-7.59.0/lib/version.c
+--- curl-7.63.0/lib/version.c
 +++ curl/lib/version.c
 @@ -126,7 +126,11 @@
    }
  
  #ifdef HAVE_LIBZ
--  len = snprintf(ptr, left, " zlib/%s", zlibVersion());
 +#ifdef MZ_VERSION
-+  len = snprintf(ptr, left, " miniz/%s", zlibVersion());
++  len = msnprintf(ptr, left, " miniz/%s", zlibVersion());
 +#else
-+  len = snprintf(ptr, left, " zlib/%s", zlibVersion());                      
+   len = msnprintf(ptr, left, " zlib/%s", zlibVersion());
 +#endif
    left -= len;
    ptr += len;
