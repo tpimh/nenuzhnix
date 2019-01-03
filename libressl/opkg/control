@@ -3,5 +3,3 @@ Version: 2.8.2
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: openssl replacement
-Repo: https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/
-SourceMD5: be697a71aa17312a1019af9e91147b03

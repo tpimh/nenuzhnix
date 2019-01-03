@@ -3,6 +3,3 @@ Version: 2018.76
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: simple ssh clieant and server
-Repo: https://matt.ucc.asn.au/${PKG}/releases/
-Tarname: ${PKG}-${VER}.tar.bz2
-SourceMD5: 065a3e51da0e515024df14011ab30e2b

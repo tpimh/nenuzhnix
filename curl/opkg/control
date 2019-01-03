@@ -3,5 +3,3 @@ Version: 7.62.0
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: multi-protocol data transfer
-Repo: https://${PKG}.haxx.se/download/
-SourceMD5: e60dbe74a5907c16524ec06e8c787497

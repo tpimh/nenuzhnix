@@ -3,5 +3,3 @@ Version: 0.7.8
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: multi-call swiss army knife
-Repo: https://landley.net/${PKG}/downloads/
-SourceMD5: 84b099d5f8655d270e12fc9402d31c1c

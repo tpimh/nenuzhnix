@@ -1,0 +1,3 @@
+Repo: https://invisible-mirror.net/archives/${PKG}/tarballs/
+Filename: ${PKG}${BASEVER}rel.${SUFFIX}.tar.gz
+MD5: 899e3531cc9446e73dc5ebe63ea5f062
