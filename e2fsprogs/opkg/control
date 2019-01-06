@@ -1,5 +1,6 @@
 Package: e2fsprogs
 Version: 1.44.5
+Depends: libc
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: ext2/3/4 filesystem utilities

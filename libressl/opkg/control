@@ -1,5 +1,7 @@
 Package: libressl
 Version: 2.8.3
+Depends: libc
+Provides: openssl
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: openssl replacement

@@ -1,5 +1,7 @@
 Package: miniz
 Version: 2.0.8
+Depends: libc
+Provides: zlib
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: zlib replacement

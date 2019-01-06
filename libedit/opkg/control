@@ -1,5 +1,7 @@
 Package: libedit
 Version: 3.1-20181209
+Depends: libc, curses
+Provides: readline
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: readline replacement

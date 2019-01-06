@@ -1,5 +1,7 @@
 Package: netbsd-curses
 Version: 0.2.2
+Depends: libc
+Provides: curses
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: lightweight curses library from netbsd

@@ -1,5 +1,6 @@
 Package: lynx
 Version: 2.8.9-1
+Depends: libc, openssl, curses
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: cli web browser

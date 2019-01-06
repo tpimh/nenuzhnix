@@ -1,5 +1,6 @@
 Package: dropbear
 Version: 2018.76
+Depends: libc, zlib
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
 Description: simple ssh clieant and server
