@@ -1,0 +1,6 @@
+Package: pciutils
+Version: 3.6.2
+Depends: libc, udev, hwids
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: pci utilities
