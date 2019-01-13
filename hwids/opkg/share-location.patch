@@ -1,0 +1,14 @@
+--- hwids-hwids-20180917/Makefile
++++ hwids/Makefile
+@@ -67,9 +67,9 @@
+ %.gz: %
+ 	gzip -c $< > $@
+ 
+-MISCDIR=/usr/share/misc
++MISCDIR=/share/misc
+ HWDBDIR=$(shell $(PKG_CONFIG) --variable=udevdir udev)/hwdb.d
+-DOCDIR=/usr/share/doc/hwids
++DOCDIR=/share/doc/hwids
+ 
+ install-base: $(DATA_FILES-yes)
+ 	mkdir -p $(DESTDIR)$(DOCDIR)
