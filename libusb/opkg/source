@@ -1,0 +1,3 @@
+Repo: https://github.com/${PKG}/${PKG}/releases/download/v${VER}/
+Filename: ${PKG}-${VER}.tar.bz2
+MD5: fb24779662d08235b8ef0cacf0716b20
