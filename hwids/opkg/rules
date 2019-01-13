@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=hwids
+
+case "$1" in
+  build)
+    patch -p1 < opkg/share-location.patch
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    rm -f *.gz
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

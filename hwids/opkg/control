@@ -1,0 +1,5 @@
+Package: hwids
+Version: 20180917
+Architecture: all
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: hardware id database
