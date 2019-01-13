@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=pciutils
+
+case "$1" in
+  build)
+    make CC=clang SHARED=yes DNS=yes PREFIX="" SBINDIR=/bin MANDIR=/share/man IDSDIR=/share/misc
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install SHARED=yes DESTDIR=$DESTDIR PREFIX="" SBINDIR=/bin MANDIR=/share/man IDSDIR=/share/misc
+    rm -f $DESTDIR/share/misc/pci.ids
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
