@@ -1,0 +1,5 @@
+Package: ca-certificates
+Version: 20180409
+Architecture: all
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: a set of trusted certificates

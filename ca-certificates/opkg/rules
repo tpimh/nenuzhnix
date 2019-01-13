@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=ca-certificates
+
+case "$1" in
+  build)
+    patch -p1 < opkg/debianisms.patch
+    patch -p1 < opkg/sbindir.patch
+    patch -p1 < opkg/support-toybox.patch
+    make SBINDIR=/bin CERTSDIR=share/$PACKAGE
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    install -d $DESTDIR/share/$PACKAGE
+    make install SBINDIR=/bin CERTSDIR=share/$PACKAGE DESTDIR=$DESTDIR
+    install -d $DESTDIR/share/man/man8
+    install -m 0644 sbin/update-ca-certificates.8 $DESTDIR/share/man/man8
+    install -d $DESTDIR/etc
+    {
+        echo "# Lines starting with # will be ignored"
+        echo "# Lines starting with ! will remove certificate on next update"
+        echo "#"
+        find $DESTDIR/share/$PACKAGE -type f -name '*.crt' | \
+            sed 's,^'$DESTDIR'/share/'$PACKAGE'/ca-certificates/,,'
+    } >$DESTDIR/etc/ca-certificates.conf
+
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
