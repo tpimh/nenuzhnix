@@ -1,0 +1,3 @@
+Repo: http://ftp.debian.org/debian/pool/main/c/${PKG}/
+Filename: ${PKG}_${VER}.tar.xz
+MD5: c06e16cce193448eb5ad6f489246341b
