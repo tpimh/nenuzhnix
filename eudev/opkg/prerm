@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rm -f /etc/udev/hwdb.bin
