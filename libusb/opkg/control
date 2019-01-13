@@ -1,0 +1,6 @@
+Package: libusb
+Version: 1.0.22
+Depends: libc, udev
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: usb access library
