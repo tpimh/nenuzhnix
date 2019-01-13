@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=eudev
+
+case "$1" in
+  build)
+    patch -p1 < opkg/oldkernel.patch
+    autoreconf -f -i
+    ./configure --prefix="" --sbindir=/bin
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
