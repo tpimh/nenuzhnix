@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=usbutils
+
+case "$1" in
+  build)
+    autoreconf -f -i
+    ./configure --prefix="" --datadir=/share/misc
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
