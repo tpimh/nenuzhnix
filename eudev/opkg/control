@@ -1,0 +1,7 @@
+Package: eudev
+Version: 3.2.7
+Depends: libc
+Provides: udev
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: udev replacement

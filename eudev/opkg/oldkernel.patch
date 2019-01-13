@@ -1,0 +1,13 @@
+--- eudev-3.2.7/src/udev/udev-builtin-input_id.c
++++ eudev/src/udev/udev-builtin-input_id.c
+@@ -42,6 +42,10 @@
+ #define LONG(x) ((x)/BITS_PER_LONG)
+ #define test_bit(bit, array)    ((array[LONG(bit)] >> OFF(bit)) & 1)
+ 
++#ifndef KEY_ALS_TOGGLE
++#define KEY_ALS_TOGGLE		0x230	/* Ambient light sensor */
++#endif
++
+ struct range {
+         unsigned start;
+         unsigned end;
