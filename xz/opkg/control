@@ -1,0 +1,7 @@
+Package: xz
+Version: 5.2.4
+Depends: libc
+Provides: lzma
+Architecture: x86_64
+Maintainer: protonesso <nagakamira@gmail.com>
+Description: library and command line tools for xz and lzma formats
