@@ -1,6 +1,6 @@
-Package: shadow
-Version: 4.6
+Package: kbd
+Version: 2.0.4
 Depends: libc
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
-Description: password management suite
+Description: keyboard layouts and fonts

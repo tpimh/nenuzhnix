@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=kbd
+
+case "$1" in
+  build)
+    CC='clang' CXX='clang++' ./configure --prefix='' --datadir=/share/kbd --mandir=/share/man --disable-nls --disable-vlock
+    make KEYCODES_PROGS=yes RESIZECONS_PROGS=yes
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make KEYCODES_PROGS=yes RESIZECONS_PROGS=yes DESTDIR=$DESTDIR install
+    ;;
+
+  clean)
+    rm -rf build
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
