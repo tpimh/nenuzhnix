@@ -1,6 +1,6 @@
 Package: eudev
 Version: 3.2.7
-Depends: libc
+Depends: libc, kmod, e2fsprogs
 Provides: udev
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
