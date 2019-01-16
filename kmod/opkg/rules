@@ -5,7 +5,7 @@ PACKAGE=kmod
 
 case "$1" in
   build)
-    CC='clang' CXX='clang++' ./configure --prefix='' --sysconfdir=/etc --with-xz --with-zlib
+    CC='clang' ./configure --prefix='' --sysconfdir=/etc --with-xz --with-zlib
     make
     ;;
 

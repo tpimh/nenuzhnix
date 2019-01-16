@@ -5,7 +5,7 @@ PACKAGE=xz
 
 case "$1" in
   build)
-    CC='clang' CXX='clang++' ./configure --prefix='' --disable-nls --disable-werror --disable-rpath
+    CC='clang' ./configure --prefix='' --disable-nls --disable-werror --disable-rpath
     make
     ;;
 

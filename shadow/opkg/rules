@@ -9,7 +9,7 @@ case "$1" in
     patch -p0 < opkg/shadow-strncpy-usage.patch
     patch -p0 < opkg/xstrdup.patch
     sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' etc/login.defs
-    CC='clang' CXX='clang++' ./configure --prefix='' --bindir=/bin --sbindir=/bin --libdir=/lib --mandir=/share/man --sysconfdir=/etc --without-audit --without-libcrack --without-libpam --without-nscd --without-selinux --with-group-name-max-length=32
+    CC='clang' ./configure --prefix='' --bindir=/bin --sbindir=/bin --libdir=/lib --mandir=/share/man --sysconfdir=/etc --without-audit --without-libcrack --without-libpam --without-nscd --without-selinux --with-group-name-max-length=32
     make
     ;;
 
