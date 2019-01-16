@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=xz
+
+case "$1" in
+  build)
+    CC='clang' CXX='clang++' ./configure --prefix='' --disable-nls --disable-werror --disable-rpath
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
