@@ -5,6 +5,7 @@ PACKAGE=simplegit
 
 case "$1" in
   build)
+    patch -p1 < opkg/fix-number-of-args.patch
     make
     ;;
 

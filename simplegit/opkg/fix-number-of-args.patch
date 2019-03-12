@@ -1,0 +1,12 @@
+diff -Naur simplegit-20180325/src/builtin/index-pack.c simplegit/src/builtin/index-pack.c
+--- simplegit-20180325/src/builtin/index-pack.c	2018-03-25 02:00:00.000000000 +0200
++++ simplegit/src/builtin/index-pack.c	2019-03-12 11:29:27.318857375 +0200
+@@ -33,7 +33,7 @@
+ 		return EXIT_FAILURE;
+ 	}
+ 
+-	if (git_indexer_new(&idx, ".", 0, NULL, NULL, NULL) < 0) {
++	if (git_indexer_new(&idx, ".", 0, NULL, NULL) < 0) {
+ 		puts("bad idx");
+ 		return -1;
+ 	}
