@@ -1,5 +1,5 @@
 Package: netbsd-curses
-Version: 0.2.2
+Version: 0.3.0
 Depends: libc
 Provides: curses
 Architecture: x86_64
