@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e 
 
+. "$(which ninjahelper)"
+
 PACKAGE=libarchive
 
 case "$1" in
@@ -9,18 +11,18 @@ case "$1" in
     patch -p1 < opkg/miniz-version.patch
     rm -rf build-ninja
     cmake -Bbuild-ninja -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_SHARED_LIBS=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl -DENABLE_CAT_SHARED=ON -DENABLE_CPIO_SHARED=ON -DENABLE_TAR_SHARED=ON
-    ninja -Cbuild-ninja -j1
+    ninjaf -Cbuild-ninja
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
-    DESTDIR=/tmp/$PACKAGE
-    DESTDIR=$DESTDIR ninja -Cbuild-ninja -j1 install
+    export DESTDIR=/tmp/$PACKAGE
+    ninjaf -Cbuild-ninja install
     ;;
 
   clean)
-    rm -rf build-ninja
+    ninjaf -C build-ninja clean
     ;;
 
   *)

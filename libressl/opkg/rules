@@ -1,24 +1,26 @@
 #!/bin/sh
 set -e 
 
+. "$(which ninjahelper)"
+
 PACKAGE=libressl
 
 case "$1" in
   build)
     rm -rf build
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
-    ninja -Cbuild -j1
+    ninjaf -Cbuild
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
-    DESTDIR=/tmp/$PACKAGE
-    DESTDIR=$DESTDIR ninja -Cbuild -j1 install
+    export DESTDIR=/tmp/$PACKAGE
+    ninjaf -Cbuild install
     ;;
 
   clean)
-    rm -rf build
+    ninjaf -Cbuild clean
     ;;
 
   *)

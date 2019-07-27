@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e 
 
+. "$(which ninjahelper)"
+
 PACKAGE=libssh2
 
 case "$1" in
@@ -8,18 +10,18 @@ case "$1" in
     rm -rf build
     patch -p1 < opkg/miniz-undef.patch
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_INSTALL_LIBDIR="lib" -DCRYPTO_BACKEND=OpenSSL -DENABLE_ZLIB_COMPRESSION=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
-    ninja -Cbuild -j1
+    ninjaf -Cbuild
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
-    DESTDIR=/tmp/$PACKAGE
-    DESTDIR=$DESTDIR ninja -Cbuild -j1 install
+    export DESTDIR=/tmp/$PACKAGE
+    ninjaf -Cbuild install
     ;;
 
   clean)
-    ninja -Cbuild -j1 clean
+    ninjaf -Cbuild clean
     ;;
 
   *)

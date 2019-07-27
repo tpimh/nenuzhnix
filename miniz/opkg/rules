@@ -1,26 +1,27 @@
 #!/bin/sh
 set -e 
 
+. "$(which ninjahelper)"
+
 PACKAGE=miniz
 
 case "$1" in
   build)
     patch -p1 < opkg/add-inflatereset.patch
     patch -p1 < opkg/cmake.patch
-    rm -rf build
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
-    ninja -Cbuild -j1
+    ninjaf -Cbuild
     ;;
 
   install)
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
-    DESTDIR=/tmp/$PACKAGE
-    DESTDIR=$DESTDIR ninja -Cbuild -j1 install
+    export DESTDIR=/tmp/$PACKAGE
+    ninjaf -Cbuild install
     ;;
 
   clean)
-    #rm -rf build
+    ninjaf -Cbuild clean
     ;;
 
   *)
