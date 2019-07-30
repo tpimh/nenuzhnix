@@ -2,10 +2,7 @@ language: generic
 
 sudo: required
 
+services:
+  - docker
 script:
-  - cd ..
-  - git clone https://github.com/tpimh/nenuzhnix-build
-  - cd nenuzhnix-build
-  - mkdir alpine
-  - mv ../nenuzhnix alpine
-  - ./build-all.sh
+  - docker run --rm --volume ${TRAVIS_BUILD_DIR}:/nenuzhnix -e TRAVIS="$TRAVIS" tpimh/nenuzhnix-build:latest /bin/sh -l -c "/install.sh && /build.sh"
