@@ -20,7 +20,7 @@ case "$1" in
     make install DESTDIR="$DESTDIR"
     install -Dm644 opkg/useradd "$DESTDIR"/etc/default/useradd
     rm "$DESTDIR"/sbin/logoutd
-    mv "$DESTDIR"/bin/{newgrp,sg}
+    mv "$DESTDIR"/bin/newgrp "$DESTDIR"/bin/sg
     mv "$DESTDIR"/sbin/* "$DESTDIR"/bin
     rmdir "$DESTDIR"/sbin
     ;;
