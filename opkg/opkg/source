@@ -1,2 +1,2 @@
-Repo: https://git.yoctoproject.org/cgit/cgit.cgi/${PKG}/snapshot/
-MD5: fafa1917490f855d3f259b9c45e291e0
+Repo: https://downloads.yoctoproject.org/releases/${PKG}/
+MD5: ae51d95fee599bb4dce08453529158f5
