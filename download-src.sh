@@ -11,19 +11,15 @@ getsourcefield() {
 }
 
 download() {
-  if [ "$#" -eq 1 ]; then
-    echo ${1##*/}
+  EXTNAME="${1##*/}"
+  if [ "$EXTNAME" = "$2" ]
+  then
+    echo "${EXTNAME}"
     curl -LSq --progress-bar -O $1
-  elif [ ${1##*.} = gz ]; then
-    echo $2
-    rm -f ${1##*/}
-    curl -LSq --progress-bar $1 -o $2
   else
-    echo $2
-    rm -f ${1##*/}
-    curl -LSq --progress-bar -O $1
-    bsdcat ${1##*/} | gzip -n - > $2
-    rm ${1##*/}
+    echo "$EXTNAME -> $2"
+    rm -f "${EXTNAME}"
+    curl -LSq --progress-bar $1 -o $2
   fi
 }
 
@@ -45,28 +41,31 @@ do
     FILENAME=$(getsourcefield $PACKAGE Filename)
     if [ -z "$FILENAME" ]
     then
-      FILENAME='${PKG}-${BASEVER}.tar.gz'
+      EXT=gz
+      FILENAME="${PKG}-${BASEVER}.tar.${EXT}"
+      RENAME="$FILENAME"
     else
-      RENAME="${PKG}-${BASEVER}.tar.gz"
+      EXT=$(echo $FILENAME | sed 's/^.*\.//')
+      RENAME="${PKG}-${BASEVER}.tar.${EXT}"
     fi
     LINK=$(echo $REPO$FILENAME | sed -e "s/\${PKG}/$PKG/g" -e "s/\${VER}/$VER/g" -e "s/\${BASEVER}/$BASEVER/g" -e "s/\${SUFFIX}/$SUFFIX/g")
     CHECKSUM=$(getsourcefield $PACKAGE MD5)
 
     if [ ! -z "$REPO" ]
     then
-      if [ -e "${PKG}-${BASEVER}.tar.gz" ]
+      if [ -e "$RENAME" ]
       then
-        if [ "$CHECKSUM  ${PKG}-${BASEVER}.tar.gz" != "$(md5sum "${PKG}-${BASEVER}.tar.gz")" ]
+        if [ "$CHECKSUM  ${RENAME}" != "$(md5sum ${RENAME})" ]
         then
           echo Wrong checksum of tarball for $PKG
-          rm "${PKG}-${BASEVER}.tar.gz"
+          rm "${RENAME}"
         fi
       fi
 
-      if [ ! -e "${PKG}-${BASEVER}.tar.gz" ]
+      if [ ! -e "${RENAME}" ]
       then
         download $LINK $RENAME
-        if [ "$CHECKSUM  ${PKG}-${BASEVER}.tar.gz" != "$(md5sum "${PKG}-${BASEVER}.tar.gz")" ]
+        if [ "$CHECKSUM  ${RENAME}" != "$(md5sum ${RENAME})" ]
         then
           echo Downloaded tarball for $PKG has wrong checksum
         fi
@@ -74,5 +73,5 @@ do
     fi
   fi
 
-  unset PKG VER BASEVER SUFFIX REPO FILENAME RENAME LINK CHECKSUM
+  unset PKG VER BASEVER SUFFIX REPO FILENAME EXT RENAME LINK CHECKSUM
 done
