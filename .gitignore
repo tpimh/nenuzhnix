@@ -3,6 +3,8 @@
 
 # ignore source tarballs
 *.tar.gz
+*.tar.xz
+*.tar.bz2
 
 # ignore built packages
 *.opk
