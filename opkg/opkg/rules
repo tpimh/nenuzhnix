@@ -5,8 +5,7 @@ PACKAGE=opkg
 
 case "$1" in
   build)
-    cp -f opkg/pkg.m4 m4/pkg.m4
-    ./autogen.sh
+    autoreconf -f -i
     ./configure CC='clang' --prefix="" --disable-static --disable-xz --enable-sha256 --enable-openssl --disable-gpg
     make
     ;;
