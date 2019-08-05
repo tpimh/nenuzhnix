@@ -1,0 +1,145 @@
+--- lynx2.8.9rel.1/aclocal.m4
++++ lynx/aclocal.m4
+@@ -3235,9 +3235,6 @@
+ 		fi
+ 		CF_ADD_LIBS(-lgnutls)
+ 		AC_CHECK_FUNCS(gnutls_protocol_set_priority)
+-		AC_CHECK_FUNC(gnutls_rnd,
+-				[AC_DEFINE(HAVE_GNUTLS_RND)],
+-				[CF_ADD_LIBS(-lgcrypt)])
+ 
+ 		ifelse([$2],,
+ 			[if test "$cf_pkg_gnutls" = none ; then
+@@ -3341,13 +3338,6 @@
+ $1="[$]$1 $cf_header_path_list"
+ ])dnl
+ dnl ---------------------------------------------------------------------------
+-dnl CF_HELP_MESSAGE version: 3 updated: 1998/01/14 10:56:23
+-dnl ---------------
+-dnl Insert text into the help-message, for readability, from AC_ARG_WITH.
+-AC_DEFUN([CF_HELP_MESSAGE],
+-[AC_DIVERT_HELP([$1])dnl
+-])dnl
+-dnl ---------------------------------------------------------------------------
+ dnl CF_INET_ADDR version: 7 updated: 2013/10/08 17:47:05
+ dnl ------------
+ dnl For Lynx, check if the libraries we have found give us inet_aton, or
+@@ -4527,22 +4517,6 @@
+ 	ifelse([$2],,[AC_MSG_ERROR([expected a pathname, not \"[$]$1\"])],$2)
+ 	;;
+ esac
+-])dnl
+-dnl ---------------------------------------------------------------------------
+-dnl CF_PDCURSES_W32 version: 1 updated: 2013/10/07 06:13:11
+-dnl ---------------
+-dnl Configure for PDCurses' Win32 library, checking for definitions as well
+-dnl which are needed to use its header file correctly.
+-AC_DEFUN([CF_PDCURSES_W32],[
+-
+-AC_CHECK_LIB(pdcurses,initscr,[
+-	CF_ADD_LIBS(-lpdcurses)
+-	cf_cv_term_header=no
+-	cf_cv_unctrl_header=no
+-	AC_CHECK_FUNC(winwstr,[AC_DEFINE(PDC_WIDE)])
+-	AC_CHECK_FUNC(pdcurses_dll_iname,[AC_DEFINE(PDC_DLL_BUILD)])
+-])
+-
+ ])dnl
+ dnl ---------------------------------------------------------------------------
+ dnl CF_PDCURSES_X11 version: 13 updated: 2012/10/06 16:39:58
+--- lynx2.8.9rel.1/configure.in
++++ lynx/configure.in
+@@ -123,9 +123,6 @@
+ dnl Debug/development/test
+ dnl --------------------------------------------------------------------------
+ 
+-CF_HELP_MESSAGE(
+-Development Options:)
+-
+ CF_DISABLE_ECHO
+ 
+ # special case for WWW/*
+@@ -354,9 +351,6 @@
+ dnl --------------------------------------------------------------------------
+ dnl --------------------------------------------------------------------------
+ 
+-CF_HELP_MESSAGE(
+-Basic Configuration Options:)
+-
+ CF_LARGEFILE
+ 
+ dnl --------------------------------------------------------------------------
+@@ -857,9 +851,6 @@
+ dnl Experimental options that don't need to test system features
+ dnl --------------------------------------------------------------------------
+ 
+-CF_HELP_MESSAGE(
+-Experimental Options:)
+-
+ dnl --------------------------------------------------------------------------
+ AC_MSG_CHECKING(if bibp: URLs should be supported)
+ CF_ARG_DISABLE(bibp-urls,
+@@ -992,9 +983,6 @@
+ dnl Miscellaneous options that don't need to test system features
+ dnl --------------------------------------------------------------------------
+ 
+-CF_HELP_MESSAGE(
+-Miscellaneous Options:)
+-
+ dnl --------------------------------------------------------------------------
+ AC_MSG_CHECKING(if alternative line-edit bindings should be used)
+ CF_ARG_DISABLE(alt-bindings,
+@@ -1280,10 +1268,6 @@
+ fi
+ 
+ dnl --------------------------------------------------------------------------
+-CF_HELP_MESSAGE(
+-Other Network Services:)
+-
+-dnl --------------------------------------------------------------------------
+ AC_MSG_CHECKING(if you want to exclude FINGER code)
+ CF_ARG_DISABLE(finger,
+ [  --disable-finger        disable FINGER logic],
+@@ -1343,9 +1327,6 @@
+ dnl DirEd (directory-editor) options
+ dnl --------------------------------------------------------------------------
+ 
+-CF_HELP_MESSAGE(
+-Directory Editor Options:)
+-
+ # All DirEd functions that were enabled on compilation can be disabled
+ # or modified at run time via DIRED_MENU symbols in lynx.cfg.
+ AC_MSG_CHECKING(if directory-editor code should be used)
+@@ -1469,7 +1450,6 @@
+ AC_SUBST(COMPRESS_EXT)
+ 
+ if test $cf_cv_screen = pdcurses ; then
+-	CF_HELP_MESSAGE(Special Libraries for PDCurses X11:)
+ 	case $host_os in
+ 	(mingw*)
+ 		CF_PDCURSES_W32
+--- lynx2.8.9rel.1/src/LYCurses.c
++++ lynx/src/LYCurses.c
+@@ -3193,7 +3193,7 @@
+ {
+     long result;
+ 
+-#if ( defined(HAVE_GETATTRS) && ( !defined(NCURSES_VERSION_MAJOR) || NCURSES_VERSION_MAJOR < 5 ) )
++#if ( defined(HAVE_GETATTRS) )
+ 
+     result = getattrs(win);
+ #else
+--- lynx2.8.9rel.1/src/LYCurses.h
++++ lynx/src/LYCurses.h
+@@ -368,11 +368,7 @@
+     extern long LYgetattrs(WINDOW * win);
+ 
+ #else
+-#if defined(HAVE_GETATTRS) || defined(getattrs)
+ #define LYgetattrs(win) getattrs(win)
+-#else
+-#define LYgetattrs(win) ((win)->_attrs)
+-#endif
+ #endif				/* HAVE_WATTR_GET */
+ 
+ #if defined(PDCURSES)
