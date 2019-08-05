@@ -6,6 +6,7 @@ PACKAGE=dash
 case "$1" in
   build)
     patch -p1 < opkg/musl-support.patch
+    autoreconf -f -i
     ./configure CC='clang' --with-libedit --prefix=""
     make
     ;;

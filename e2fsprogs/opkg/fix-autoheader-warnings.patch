@@ -1,0 +1,35 @@
+diff --git a/configure.ac b/configure.ac
+index 248b291d..3b86c1a1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1119,9 +1119,11 @@ dnl the functions added after migrating that library to util-linux
+ dnl
+ if test -n "$BLKID_CMT"; then
+   AC_CHECK_LIB(blkid, blkid_probe_get_topology,
+-		      AC_DEFINE(HAVE_BLKID_PROBE_GET_TOPOLOGY, 1))
++		      AC_DEFINE(HAVE_BLKID_PROBE_GET_TOPOLOGY, 1,
++				[Define to 1 if blkid has blkid_probe_get_topology]))
+   AC_CHECK_LIB(blkid, blkid_probe_enable_partitions,
+-		      AC_DEFINE(HAVE_BLKID_PROBE_ENABLE_PARTITIONS, 1))
++		      AC_DEFINE(HAVE_BLKID_PROBE_ENABLE_PARTITIONS, 1,
++				[Define to 1 if blkid has blkid_probe_enable_partitions]))
+ fi
+ dnl
+ if test -n "$DLOPEN_LIB" ; then
+diff --git a/lib/config.h.in b/lib/config.h.in
+index caa3faee..407911ca 100644
+--- a/lib/config.h.in
++++ b/lib/config.h.in
+@@ -73,10 +73,10 @@
+ /* Define to 1 if you have the `backtrace' function. */
+ #undef HAVE_BACKTRACE
+ 
+-/* Define to 1 if you have the `blkid_probe_enable_partitions' function. */
++/* Define to 1 if blkid has blkid_probe_enable_partitions */
+ #undef HAVE_BLKID_PROBE_ENABLE_PARTITIONS
+ 
+-/* Define to 1 if you have the `blkid_probe_get_topology' function. */
++/* Define to 1 if blkid has blkid_probe_get_topology */
+ #undef HAVE_BLKID_PROBE_GET_TOPOLOGY
+ 
+ /* Define to 1 if the compiler understands __builtin_expect. */
