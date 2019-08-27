@@ -1,5 +1,5 @@
 Package: opkg
-Version: 0.4.0
+Version: 0.4.1
 Depends: libc, zlib, openssl, libssh2, curl, libarchive
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
