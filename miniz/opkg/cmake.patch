@@ -1,21 +1,21 @@
---- miniz-2.0.7/CMakeLists.txt
+--- miniz-2.1.0/CMakeLists.txt
 +++ miniz/CMakeLists.txt
 @@ -12,7 +12,7 @@
- 
+
  set(miniz_SOURCE miniz.c miniz_zip.c miniz_tinfl.c miniz_tdef.c)
- 
+
 -add_library(miniz ${miniz_SOURCE})
 +add_library(miniz SHARED ${miniz_SOURCE})
- 
+ target_include_directories(miniz PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+
  set(EXAMPLE1_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example1.c")
- set(EXAMPLE2_SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/examples/example2.c")
 @@ -49,4 +49,25 @@
      LIBRARY DESTINATION lib
      )
  file(GLOB INSTALL_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 -install(FILES ${INSTALL_HEADERS} DESTINATION include/${PROJECT_NAME})
 \ No newline at end of file
-+install(FILES ${INSTALL_HEADERS} DESTINATION include)
++install(FILES ${INSTALL_HEADERS} DESTINATION include/${PROJECT_NAME})
 +
 +macro(install_symlink filepath symname symdir)
 +	install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${CMAKE_CURRENT_BINARY_DIR}/${symname})")
@@ -37,7 +37,7 @@
 +install_symlink(libminiz.so libz.so ${CMAKE_INSTALL_PREFIX}/lib)
 +install_symlink(miniz.h zlib.h ${CMAKE_INSTALL_PREFIX}/include)
 +install_empty(zconf.h ${CMAKE_INSTALL_PREFIX}/include)
---- miniz-2.0.7/miniz.pc.in
+--- miniz-2.1.0/miniz.pc.in
 +++ miniz/miniz.pc.in
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
