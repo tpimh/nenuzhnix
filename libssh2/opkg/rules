@@ -9,6 +9,7 @@ case "$1" in
   build)
     rm -rf build
     patch -p1 < opkg/miniz-undef.patch
+    patch -p1 < opkg/missing-files.patch
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DCMAKE_INSTALL_LIBDIR="lib" -DCRYPTO_BACKEND=OpenSSL -DENABLE_ZLIB_COMPRESSION=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
     ninjaf -Cbuild
     ;;
