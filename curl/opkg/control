@@ -1,5 +1,5 @@
 Package: curl
-Version: 7.64.0
+Version: 7.65.3
 Depends: libc, zlib, openssl, libssh2
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
