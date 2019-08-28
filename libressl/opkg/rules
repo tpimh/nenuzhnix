@@ -8,6 +8,7 @@ PACKAGE=libressl
 case "$1" in
   build)
     rm -rf build
+    patch -p1 < opkg/musl-support.patch
     cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
     ninjaf -Cbuild
     ;;
