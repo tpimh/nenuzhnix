@@ -15,6 +15,7 @@ case "$1" in
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
     make install DESTDIR=$DESTDIR
+    rm $DESTDIR/lib/liblzma.la
     ;;
 
   clean)
