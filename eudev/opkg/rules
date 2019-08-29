@@ -5,7 +5,6 @@ PACKAGE=eudev
 
 case "$1" in
   build)
-    patch -p1 < opkg/oldkernel.patch
     autoreconf -f -i
     ./configure --prefix='' --with-rootprefix='' --libdir=/lib --sbindir=/bin --sysconfdir=/etc --enable-hwdb --enable-kmod --disable-introspection --disable-manpages
     make
