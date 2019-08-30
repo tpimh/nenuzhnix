@@ -18,9 +18,10 @@ case "$1" in
 EOF
 
     cat << EOF > inittab
-::sysinit:mount proc /proc -t proc
-::sysinit:sysctl -p
-::respawn:/sbin/getty -l /bin/autologin -n -L ttyS0 115200 vt100
+::sysinit:/bin/rc.boot
+::respawn:/bin/getty -l /bin/autologin -n -L ttyS0 115200 vt100
+::shutdown:/bin/rc.shutdown
+::ctrlaltdel:/bin/reboot
 EOF
 
     cat << EOF > profile
@@ -62,6 +63,74 @@ EOF
 #!/bin/sh
 /bin/dash -V \$*
 EOF
+
+  cat << EOF > rc.boot
+#!/bin/sh
+export PATH=/bin
+
+mountpoint -q /proc    || mount -t proc proc /proc -o nosuid,noexec,nodev
+mountpoint -q /sys     || mount -t sysfs sys /sys -o nosuid,noexec,nodev
+mountpoint -q /run     || mount -t tmpfs run /run -o mode=0755,nosuid,nodev
+mountpoint -q /dev     || mount -t devtmpfs dev /dev -o mode=0755,nosuid
+mkdir -p /dev/pts /dev/shm
+mountpoint -q /dev/pts || mount -t devpts devpts /dev/pts -o mode=0620,gid=5,nosuid,noexec
+mountpoint -q /dev/shm || mount -t tmpfs shm /dev/shm -o mode=1777,nosuid,nodev
+
+if [ -x /bin/udevd ]; then
+	udevd --daemon
+	udevadm trigger --action=add --type=subsystems
+	udevadm trigger --action=add --type=devices
+	udevadm trigger --action=change --type=devices
+	udevadm settle
+fi
+
+mount -o remount,ro /
+
+fsck -ATa
+if [ $? -eq 1 ]; the
+  echo "Filesystem errors exist, fix manually."
+  /bin/dash
+  /bin/reboot -f
+fi
+
+if grep -wq rw /proc/cmdline ; then
+	mount -o remount,rw /
+fi
+
+mount -a -t nonfs,nonfs4,nosmbfs,nocifs -O no_netdev  &>/dev/null
+
+swapon -a
+
+hwclock -u -s
+
+hostname $(cat /etc/hostname)
+ifconfig lo up
+
+[ -f /etc/random-seed ] && cat /etc/random-seed >/dev/urandom
+dd if=/dev/urandom of=/etc/random-seed count=1 bs=512 2>/dev/null
+EOF
+
+  cat << EOF > rc.shutdown
+#!/bin/sh
+export PATH=/bin
+
+hwclock -u -w
+
+killall5 -15
+sleep 1
+killall5 -9
+
+dd if=/dev/urandom of=/etc/random-seed count=1 bs=512 2>/dev/null
+
+swapoff -a
+umount -a -r -t nonfs,noumsdos,nosmbfs,noproc
+
+mount -o remount,ro /
+
+sync
+
+wait
+EOF
     ;;
 
   install)
@@ -76,6 +145,8 @@ EOF
     mkdir -p /tmp/$PACKAGE/root
     mkdir -p /tmp/$PACKAGE/share
     mkdir -p /tmp/$PACKAGE/sys
+    mkdir -p /tmp/$PACKAGE/run
+    mkdir -p /tmp/$PACKAGE/tmp
     install -D -m 644 group /tmp/$PACKAGE/etc/group
     install -D -m 640 gshadow /tmp/$PACKAGE/etc/gshadow
     install -D -m 644 passwd /tmp/$PACKAGE/etc/passwd
@@ -90,6 +161,8 @@ EOF
     install -D -m 755 autologin /tmp/$PACKAGE/bin/autologin
     install -D -m 755 esh /tmp/$PACKAGE/bin/esh
     install -D -m 755 vsh /tmp/$PACKAGE/bin/vsh
+    install -D -m 755 rc.boot /tmp/$PACKAGE/bin/rc.boot
+    install -D -m 755 rc.shutdown /tmp/$PACKAGE/bin/rc.shutdown
     ln -sf dash /tmp/$PACKAGE/bin/sh
     ;;
 
