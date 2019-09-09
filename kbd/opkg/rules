@@ -6,7 +6,7 @@ PACKAGE=kbd
 case "$1" in
   build)
     autoreconf -f -i
-    ./configure --prefix='' --datadir=/share/kbd --mandir=/share/man --disable-nls --disable-vlock
+    ./configure --prefix='' --datadir=/share/kbd --mandir=/share/man --disable-nls --disable-vlock --disable-tests
     make KEYCODES_PROGS=yes RESIZECONS_PROGS=yes
     ;;
 
