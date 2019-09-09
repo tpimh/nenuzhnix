@@ -13,7 +13,7 @@ case "$1" in
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     PREFIX=/tmp/$PACKAGE/bin make CC=clang install_flat
-    rm -rf /tmp/$PACKAGE/bin/reset /tmp/$PACKAGE/bin/clear /tmp/$PACKAGE/bin/uuidgen /tmp/$PACKAGE/bin/lsattr /tmp/$PACKAGE/bin/chattr /tmp/$PACKAGE/bin/blkid
+    rm -rf /tmp/$PACKAGE/bin/reset /tmp/$PACKAGE/bin/clear /tmp/$PACKAGE/bin/uuidgen /tmp/$PACKAGE/bin/lsattr /tmp/$PACKAGE/bin/chattr /tmp/$PACKAGE/bin/blkid /tmp/$PACKAGE/bin/login /tmp/$PACKAGE/bin/su /tmp/$PACKAGE/bin/chvt /tmp/$PACKAGE/bin/groups /tmp/$PACKAGE/bin/passwd /tmp/$PACKAGE/bin/lspci /tmp/$PACKAGE/bin/lsusb
     ;;
 
   clean)
