@@ -1,6 +1,6 @@
 Package: libarchive
-Version: 3.4.0
-Depends: libc, zlib, openssl
+Version: 3.4.2
+Depends: libc, zlib, lzma, openssl
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
 Description: archive library
