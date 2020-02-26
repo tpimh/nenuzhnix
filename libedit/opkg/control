@@ -1,5 +1,5 @@
 Package: libedit
-Version: 3.1-20190324
+Version: 3.1-20191231
 Depends: libc, curses
 Provides: readline
 Architecture: x86_64
