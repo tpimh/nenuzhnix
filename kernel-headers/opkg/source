@@ -1,3 +1,3 @@
 Repo: https://ftp.barfooze.de/pub/sabotage/tarballs/
-Filename: ${PKG}-${VER}.tar.xz
-MD5: 0cb850e0c6822abab40501b49d4b7394
+Filename: linux-headers-${VER}.tar.xz
+MD5: 8c5005edb3bc8a6a9a8e16c11d61d086
