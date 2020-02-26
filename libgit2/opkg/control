@@ -1,5 +1,5 @@
 Package: libgit2
-Version: 0.28.3
+Version: 0.99.0
 Depends: libc, zlib, openssl, libssh2, curl
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
