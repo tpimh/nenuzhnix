@@ -1,5 +1,5 @@
 Package: toybox
-Version: 0.8.1
+Version: 0.8.2
 Depends: libc
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
