@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=mingetty
+
+case "$1" in
+  build)
+    make CC=clang
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    mkdir -p $DESTDIR/share/man
+    make install SBINDIR=/bin MANDIR=/share/man/man8 DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

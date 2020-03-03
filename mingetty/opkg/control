@@ -1,0 +1,6 @@
+Package: mingetty
+Version: 1.08
+Depends: libc
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: minimal getty
