@@ -1,5 +1,5 @@
 Package: libressl
-Version: 3.0.2
+Version: 3.2.2
 Depends: libc
 Provides: openssl
 Architecture: x86_64
