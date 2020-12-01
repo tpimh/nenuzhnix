@@ -1,14 +1,14 @@
---- curl-7.63.0/lib/version.c
+--- curl-7.73.0/lib/version.c
 +++ curl/lib/version.c
-@@ -126,7 +126,11 @@
-   }
- 
+@@ -163,7 +163,11 @@
+   src[i++] = ssl_version;
+ #endif
  #ifdef HAVE_LIBZ
 +#ifdef MZ_VERSION
-+  len = msnprintf(ptr, left, " miniz/%s", zlibVersion());
++  msnprintf(z_version, sizeof(z_version), "miniz/%s", zlibVersion());
 +#else
-   len = msnprintf(ptr, left, " zlib/%s", zlibVersion());
+   msnprintf(z_version, sizeof(z_version), "zlib/%s", zlibVersion());
 +#endif
-   left -= len;
-   ptr += len;
+   src[i++] = z_version;
  #endif
+ #ifdef HAVE_BROTLI
