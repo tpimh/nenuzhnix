@@ -1,5 +1,5 @@
 Package: pciutils
-Version: 3.6.4
+Version: 3.7.0
 Depends: libc, udev
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
