@@ -1,5 +1,5 @@
 Package: usbutils
-Version: 012
+Version: 013
 Depends: libc, udev, libusb
 Architecture: x86_64
 Maintainer: Dmitry Golovin <dima@golovin.in>
