@@ -8,7 +8,7 @@ PACKAGE=libgit2
 case "$1" in
   build)
     rm -rf build
-    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DUSE_ICONV=ON -DBUILD_CLAR=OFF -DCMAKE_SYSROOT=/x86_64-pc-linux-musl
+    cmake -Bbuild -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DUSE_ICONV=ON -DBUILD_CLAR=OFF -DCMAKE_SYSROOT=/x86_64-pc-linux-musl -DCMAKE_INSTALL_LIBDIR=lib
     ninjaf -Cbuild
     ;;
 
