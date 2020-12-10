@@ -1,0 +1,6 @@
+Package: awk
+Version: 20180827
+Depends: libc
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: one true awk

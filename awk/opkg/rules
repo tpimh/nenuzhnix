@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=awk
+
+case "$1" in
+  build)
+    make CC=clang CFLAGS="-O2 -Wall -pedantic"
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    mkdir $DESTDIR/bin
+    cp a.out $DESTDIR/bin/awk
+    mkdir -p $DESTDIR/share/man/man1
+    cp awk.1 $DESTDIR/share/man/man1
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
