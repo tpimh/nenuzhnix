@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=vi
+
+case "$1" in
+  build)
+    make CHARSET=""
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install INSTALL=install PREFIX="" DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

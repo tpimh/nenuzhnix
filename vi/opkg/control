@@ -1,0 +1,6 @@
+Package: vi
+Version: 050325
+Depends: libc
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: traditional text editor
