@@ -1,0 +1,3 @@
+Repo: https://github.com/gavinhoward/${PKG}/releases/download/${VER}/
+Filename: ${PKG}-${VER}.tar.xz
+MD5: ef031f3d0ffd02a0965a670efa95c3e8

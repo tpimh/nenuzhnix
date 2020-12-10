@@ -1,0 +1,6 @@
+Package: bc
+Version: 3.2.3
+Depends: libc
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: basic calculator
