@@ -1,5 +1,5 @@
 Package: eudev
-Version: 3.2.8
+Version: 3.2.9
 Depends: libc, kmod, e2fsprogs
 Provides: udev
 Architecture: x86_64
