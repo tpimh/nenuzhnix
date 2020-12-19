@@ -1,5 +1,5 @@
 Package: shadow
-Version: 4.7
+Version: 4.8.1
 Depends: libc
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
