@@ -1,5 +1,5 @@
 Package: kbd
-Version: 2.2.0
+Version: 2.4.0
 Depends: libc
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
