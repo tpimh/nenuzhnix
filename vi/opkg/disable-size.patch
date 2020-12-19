@@ -1,0 +1,10 @@
+--- ex-050325/Makefile
++++ vi/Makefile
+@@ -265,7 +265,6 @@
+ 
+ ex: $(TLIB) $(OBJS)
+ 	$(CC) -o ex $(LDFLAGS) $(OBJS) $(LDADD) -Llibterm -l$(TERMLIB) $(RELIB)
+-	size ex
+ 
+ $(TLIB): libterm/termcap.c libterm/tgoto.c libterm/tputs.c libterm/libterm.h
+ 	@cd libterm && $(MAKE) CC="$(CC)" \

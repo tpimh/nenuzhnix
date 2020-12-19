@@ -5,6 +5,7 @@ PACKAGE=vi
 
 case "$1" in
   build)
+    patch -p1 < opkg/disable-size.patch
     make CHARSET=""
     ;;
 
