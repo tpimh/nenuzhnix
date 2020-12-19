@@ -1,5 +1,5 @@
 Package: kmod
-Version: 26
+Version: 27
 Depends: libc, lzma
 Architecture: x86_64
 Maintainer: protonesso <nagakamira@gmail.com>
