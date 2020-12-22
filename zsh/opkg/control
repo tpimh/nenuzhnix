@@ -1,0 +1,6 @@
+Package: zsh
+Version: 5.8
+Depends: libc, curses
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: z shell

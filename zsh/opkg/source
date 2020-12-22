@@ -1,0 +1,3 @@
+Repo: https://www.${PKG}.org/pub/
+Filename: ${PKG}-${VER}.tar.xz
+MD5: e02a5428620b3dd268800c7843b3dd4d

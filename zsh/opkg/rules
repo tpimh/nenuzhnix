@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=zsh
+
+case "$1" in
+  build)
+    autoreconf -f -i
+    ./configure --prefix='' --enable-libc-musl --enable-multibyte --enable-unicode9
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
