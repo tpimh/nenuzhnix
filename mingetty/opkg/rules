@@ -12,7 +12,7 @@ case "$1" in
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
-    mkdir -p $DESTDIR/share/man
+    mkdir -p $DESTDIR/bin $DESTDIR/share/man/man8
     make install SBINDIR=/bin MANDIR=/share/man/man8 DESTDIR=$DESTDIR
     ;;
 
