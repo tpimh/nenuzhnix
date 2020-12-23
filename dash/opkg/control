@@ -1,5 +1,5 @@
 Package: dash
-Version: 0.5.11.2
+Version: 0.5.11.3
 Depends: libc, libedit
 Provides: sh
 Architecture: x86_64
