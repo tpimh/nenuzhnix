@@ -1,0 +1,20 @@
+diff -Naur e2fsprogs-1.45.6/configure.ac e2fsprogs/configure.ac
+--- e2fsprogs-1.45.6/configure.ac	2020-03-21 06:24:04.000000000 +0200
++++ e2fsprogs/configure.ac	2020-12-23 14:58:27.834270178 +0200
+@@ -873,10 +873,15 @@
+ AC_SUBST(PACKAGE)
+ AC_SUBST(VERSION)
+
+-AM_GNU_GETTEXT
++AM_GNU_GETTEXT([external])
++AM_GNU_GETTEXT_VERSION([0.19.1])
++USE_INCLUDED_LIBINTL=no
++BUILD_INCLUDED_LIBINTL=no
+ dnl
+ dnl End of configuration options
+ dnl
++AC_SUBST(USE_INCLUDED_LIBINTL)
++AC_SUBST(BUILD_INCLUDED_LIBINTL)
+ AC_SUBST(BINARY_TYPE)
+ AC_PROG_MAKE_SET
+ CHECK_GNU_MAKE

@@ -6,6 +6,7 @@ PACKAGE=e2fsprogs
 case "$1" in
   build)
     patch -p1 < opkg/disable-docs.patch
+    patch -p1 < opkg/gettext.patch
     autoreconf -f -i
     CC="clang" CFLAGS="-Wno-unused-command-line-argument" ./configure --prefix="" --sbindir=/bin --disable-rpath --enable-elf-shlibs --enable-libuuid --enable-libblkid --disable-nls
     make
