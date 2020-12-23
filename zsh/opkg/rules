@@ -6,7 +6,7 @@ PACKAGE=zsh
 case "$1" in
   build)
     autoreconf -f -i
-    ./configure --prefix='' --enable-libc-musl --enable-multibyte --enable-unicode9
+    ./configure --prefix='' --enable-libc-musl --enable-multibyte --enable-unicode9 --with-tcsetpgrp
     make
     ;;
 
