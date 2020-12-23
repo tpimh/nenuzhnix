@@ -16,7 +16,7 @@ case "$1" in
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
-    make install install-libs DESTDIR=$DESTDIR
+    make install install-libs LDCONFIG=true DESTDIR=$DESTDIR
     ;;
 
   clean)
