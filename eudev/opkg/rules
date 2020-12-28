@@ -6,7 +6,7 @@ PACKAGE=eudev
 case "$1" in
   build)
     autoreconf -f -i
-    ./configure --prefix='' --with-rootprefix='' --libdir=/lib --sbindir=/bin --sysconfdir=/etc --enable-hwdb --enable-kmod --disable-introspection --disable-manpages
+    ./configure --prefix='' --with-rootprefix='' --libdir=/lib --sbindir=/bin --sysconfdir=/etc --enable-hwdb --enable-kmod --disable-introspection
     make
     ;;
 
