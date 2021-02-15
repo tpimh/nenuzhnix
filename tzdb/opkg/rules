@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=tzdb
+
+case "$1" in
+  build)
+    make ALL
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make INSTALL DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
