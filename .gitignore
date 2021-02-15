@@ -5,6 +5,7 @@
 *.tar.gz
 *.tar.xz
 *.tar.bz2
+*.tar.lz
 
 # ignore built packages
 *.opk
