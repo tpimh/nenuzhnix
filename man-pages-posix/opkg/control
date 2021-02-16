@@ -1,0 +1,5 @@
+Package: man-pages-posix
+Version: 2017-a
+Architecture: all
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: posix manual pages

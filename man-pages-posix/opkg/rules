@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=man-pages-posix
+
+case "$1" in
+  build)
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make prefix="" install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac
