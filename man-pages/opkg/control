@@ -1,0 +1,5 @@
+Package: man-pages
+Version: 5.10
+Architecture: all
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: manual pages
