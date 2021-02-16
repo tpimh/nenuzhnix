@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e 
+
+PACKAGE=man
+
+case "$1" in
+  build)
+    patch -p1 < opkg/man2html-dir.patch
+    patch -p1 < opkg/compile-warnings.patch
+    CC=clang ./configure -d -prefix="/" -sbindir="/bin" -bindir="/bin" -confdir="/etc" -mandir="/share/man"
+    make
+    ;;
+
+  install)
+    rm -rf /tmp/$PACKAGE
+    mkdir -p /tmp/$PACKAGE
+    DESTDIR=/tmp/$PACKAGE
+    make install DESTDIR=$DESTDIR
+    ;;
+
+  clean)
+    make clean
+    ;;
+
+  *)
+    echo unknown argument $1
+    ;;
+esac

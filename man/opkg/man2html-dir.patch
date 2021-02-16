@@ -1,0 +1,11 @@
+--- a/man2html/Makefile.in
++++ b/man2html/Makefile.in
+@@ -2,7 +2,7 @@
+ CFLAGS += -Wall -Wstrict-prototypes -Wmissing-prototypes
+ OBJECTS = man2html.o cgibase.o abbrev.o strdefs.o
+ EXEEXT = @EXEEXT@
+-bindir = $(DESTDIR)$(PREFIX)/usr/bin
++bindir = $(DESTDIR)$(PREFIX)@bindir@
+ mandir = $(DESTDIR)$(PREFIX)@mandir@
+ vardir = $(DESTDIR)$(PREFIX)/var
+ httpdir = $(DESTDIR)$(PREFIX)/home/httpd
