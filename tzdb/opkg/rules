@@ -5,6 +5,7 @@ PACKAGE=tzdb
 
 case "$1" in
   build)
+    sed -e 's/^ZICDIR = \(.*\)sbin$/ZICDIR = \1bin/g' -e 's/^USRDIR = .*$/USRDIR =/g' -i Makefile
     make ALL
     ;;
 
