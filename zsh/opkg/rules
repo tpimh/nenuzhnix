@@ -14,7 +14,7 @@ case "$1" in
     rm -rf /tmp/$PACKAGE
     mkdir -p /tmp/$PACKAGE
     DESTDIR=/tmp/$PACKAGE
-    make install
+    make install DESTDIR=$DESTDIR
     ;;
 
   clean)
