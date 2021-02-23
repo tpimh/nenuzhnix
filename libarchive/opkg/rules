@@ -7,8 +7,6 @@ PACKAGE=libarchive
 
 case "$1" in
   build)
-    patch -p1 < opkg/miniz-support.patch
-    patch -p1 < opkg/miniz-version.patch
     rm -rf build-ninja
     cmake -Bbuild-ninja -H. -GNinja -DCMAKE_INSTALL_PREFIX="" -DBUILD_SHARED_LIBS=ON -DCMAKE_SYSROOT=/x86_64-pc-linux-musl -DENABLE_CAT_SHARED=ON -DENABLE_CPIO_SHARED=ON -DENABLE_TAR_SHARED=ON
     ninjaf -Cbuild-ninja

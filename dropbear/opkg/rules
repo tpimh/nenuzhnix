@@ -6,8 +6,7 @@ PACKAGE=dropbear
 case "$1" in
   build)
     autoreconf -f -i
-    patch -p1 < opkg/miniz-support.patch
-    ./configure CC='clang' --prefix="" --bindir=/bin --sbindir=/bin --with-zlib=/x86_64-pc-linux-musl/lib
+    ./configure CC='clang' --prefix="" --bindir=/bin --sbindir=/bin
     make PROGRAMS="dbclient dropbear dropbearconvert dropbearkey scp" SCPPROGRESS=1
     ;;
 
