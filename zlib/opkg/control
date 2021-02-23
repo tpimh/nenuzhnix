@@ -1,0 +1,6 @@
+Package: zlib
+Version: 1.2.11
+Depends: libc
+Architecture: x86_64
+Maintainer: Dmitry Golovin <dima@golovin.in>
+Description: data compression library
