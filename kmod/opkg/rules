@@ -6,7 +6,7 @@ PACKAGE=kmod
 case "$1" in
   build)
     autoreconf -f -i
-    ./configure --prefix='' --sysconfdir=/etc --with-xz #--with-zlib
+    ./configure --prefix='' --sysconfdir=/etc --with-xz --with-zlib
     make
     ;;
 
